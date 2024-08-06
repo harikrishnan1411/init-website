@@ -1,2 +1,80 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Document</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+</head>
+<body>
+     <nav class="w-screen bg-gray-900 h-fit overflow-hidden">
+        <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
+            <div>
+                <h1 class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</h1>
+            </div>
+            <div class="flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center" id="navItems">
+                <span class="group">
+                    EVENTS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </span>
+                <span class="group">
+                    MEMBERS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </span>
+                <span class="group">
+                    CONTACT
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </span>
+                <span class="group">
+                    ABOUT US
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </span>
+            </div>
+            <div id="hamburger" class="fa fa-bars flex items-center text-xl" style="display:none;"></div>
+            <div id="mobileNav"
+                class="fixed flex flex-col gap-8 pt-16 px-4 text-xl uppercase bg-teal-500 h-full inset-0 top-16 w-[70%] left-[-70%] ease-in-out duration-500 cursor-pointer">
+                <span>EVENTS</span>
+                <span>MEMBERS</span>
+                <span>CONTACT</span>
+                <span>ABOUT US</span>
+            </div>
+        </div>
+    </nav>
+    <section class="bg-gray-900 text-white">
+  <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1
+        class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
+      >
+        Init
+
+        <span class="sm:block"> Association </span>
+      </h1>
+
+      <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus
+        numquam ea!
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+          href="#"
+        >
+          Get Started
+        </a>
+
+        <a
+          class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+          href="#"
+        >
+          Learn More
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
