@@ -7,43 +7,67 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Init-IT Association</title>
+    <style>
+        /* Ensure mobile nav links are styled and visible */
+        #mobileNav a {
+            color: white; /* Make sure text is white */
+            text-decoration: none; /* Remove underline */
+            font-size: 1.25rem; /* Adjust font size */
+            text-transform: uppercase; /* Uppercase text */
+            padding: 1rem; /* Add padding for spacing */
+            width: 100%; /* Make links full width */
+            text-align: center; /* Center text */
+            transition: background-color 0.3s ease; /* Smooth transition for background */
+        }
+        #mobileNav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
+        }
+        /* Ensure hamburger button is properly styled */
+        #hamburger {
+            z-index: 60;
+        }
+        /* Ensure mobile nav is hidden off-screen by default */
+        #mobileNav {
+            transform: translateX(-100%);
+        }
+    </style>
 </head>
 <body>
-    <nav class="w-screen bg-gray-900 h-fit overflow-hidden">
+    <nav class="w-screen bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
         <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
-            <div>
+            <div class="lg:w-1/2">
                 <h1 class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</h1>
             </div>
-            <div class="hidden lg:flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center" id="navItems">
-                <span class="group">
+            <div class="hidden lg:flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center lg:w-1/2 justify-end" id="navItems">
+                <a href="#" class="group">
                     EVENTS
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </span>
-                <span class="group">
+                </a>
+                <a href="#" class="group">
                     MEMBERS
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </span>
-                <span class="group">
+                </a>
+                <a href="#" class="group">
                     CONTACT
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </span>
-                <span class="group">
+                </a>
+                <a href="#" class="group">
                     ABOUT US
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </span>
+                </a>
             </div>
             <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
-            <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[75%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
-                <button class="self-end text-2xl" id="closeMobileNav">
-                    <i class="fas fa-times"></i>
-                </button>
-                <span class="text-xl uppercase">EVENTS</span>
-                <span class="text-xl uppercase">MEMBERS</span>
-                <span class="text-xl uppercase">CONTACT</span>
-                <span class="text-xl uppercase">ABOUT US</span>
-            </div>
+        </div>
+        <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[75%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+            <button class="self-end text-2xl" id="closeMobileNav">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#">EVENTS</a>
+            <a href="#">MEMBERS</a>
+            <a href="#">CONTACT</a>
+            <a href="#">ABOUT US</a>
         </div>
     </nav>
     <section class="bg-gray-900 text-white">
