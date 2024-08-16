@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Init-IT Association</title>
+    <style>
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Ensure mobile nav links are styled and visible */
+        #mobileNav {
+            transform: translateX(100%);
+            /* Start off-screen to the right */
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Aligns with the top of the viewport */
+            right: 0;
+            /* Aligns with the right side of the viewport */
+            height: 100vh;
+            /* Ensures it takes the full height of the viewport */
+            width: 75%;
+            /* Adjust the width as needed */
+            padding: 0;
+            /* Remove any default padding */
+            margin: 0;
+            /* Remove any default margin */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        #mobileNav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #hamburger {
+            z-index: 60;
+        }
+
+        /* Mobile Nav initial hidden state */
+        #mobileNav {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Ensure it is aligned with the top */
+            left: 0;
+            /* Align with the left side */
+        }
+
+        /* Mobile Nav active state */
+        #mobileNav.active {
+            transform: translateX(0);
+        }
+
+        #closeMobileNav {
+            margin: 1rem;
+            /* Adjust margin if necessary */
+            align-self: flex-end;
+            /* Align to the end of the container */
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+    
+
+
+        /* Navbar scroll effect */
+        nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+</head>
+
+<body class="bg-white dark:bg-gray-900">
+    <nav class="w-screen bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
+        <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
+            <div class="lg:w-1/2">
+                <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</a>
+            </div>
+            <div class="hidden lg:flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center lg:w-1/2 justify-end"
+                id="navItems">
+                <a href="/events" class="group">
+                    EVENTS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/members" class="group">
+                    MEMBERS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/contactus" class="group">
+                    CONTACT
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/about" class="group">
+                    ABOUT US
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+            </div>
+            <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileNav"
+            class="fixed inset-y-0 right-0 w-[75%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+            <button class="self-end text-2xl" id="closeMobileNav">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="/events">EVENTS</a>
+            <a href="/members">MEMBERS</a>
+            <a href="/contactus">CONTACT</a>
+            <a href="/about">ABOUT US</a>
+        </div>
+    </nav>
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
+      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Reach out to us for any queries related to our events or anything related to init Association</p>
+      <form action="#" class="space-y-8">
+          <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
+              <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@gmail.com" required>
+          </div>
+          <div>
+              <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
+              <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required>
+          </div>
+          <div class="sm:col-span-2">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
+              <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+          </div>
+          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>
+      </form>
+  </div>
+</section>
+   
+
+
+    <script>
+        // Handle navbar background color change on scroll
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Handle hamburger menu toggle
+        // Handle hamburger menu toggle
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('mobileNav').classList.add('active');
+        });
+
+        document.getElementById('closeMobileNav').addEventListener('click', function () {
+            document.getElementById('mobileNav').classList.remove('active');
+        });
+
+    </script>
+</body>
+
+</html>

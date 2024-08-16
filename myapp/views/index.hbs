@@ -15,7 +15,7 @@
             font-size: 1.25rem; /* Adjust font size */
             text-transform: uppercase; /* Uppercase text */
             padding: 1rem; /* Add padding for spacing */
-            width: 100%; /* Make links full width */
+            width: 50%; /* Make links full width */
             text-align: center; /* Center text */
             transition: background-color 0.3s ease; /* Smooth transition for background */
         }
@@ -29,6 +29,20 @@
         /* Ensure mobile nav is hidden off-screen by default */
         #mobileNav {
             transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Ensure it is aligned with the top */
+            left: 0;
+            /* Align with the left side */
+        }
+
+        /* Mobile Nav active state */
+        #mobileNav.active {
+            transform: translateX(0);
+        }
+         nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease;
         }
     </style>
 </head>
@@ -36,22 +50,22 @@
     <nav class="w-screen bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
         <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
             <div class="lg:w-1/2">
-                <h1 class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</h1>
+                <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</a href="/">
             </div>
             <div class="hidden lg:flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center lg:w-1/2 justify-end" id="navItems">
-                <a href="#" class="group">
+                <a href="/events" class="group">
                     EVENTS
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
                 </a>
-                <a href="#" class="group">
+                <a href="/members" class="group">
                     MEMBERS
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
                 </a>
-                <a href="#" class="group">
+                <a href="/contactus" class="group">
                     CONTACT
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
                 </a>
-                <a href="#" class="group">
+                <a href="/about" class="group">
                     ABOUT US
                     <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
                 </a>
@@ -64,10 +78,10 @@
             <button class="self-end text-2xl" id="closeMobileNav">
                 <i class="fas fa-times"></i>
             </button>
-            <a href="#">EVENTS</a>
-            <a href="#">MEMBERS</a>
-            <a href="#">CONTACT</a>
-            <a href="#">ABOUT US</a>
+            <a href="/events">EVENTS</a>
+            <a href="/members">MEMBERS</a>
+            <a href="/contactus">CONTACT</a>
+            <a href="/about">ABOUT US</a>
         </div>
     </nav>
     <section class="bg-gray-900 text-white">
