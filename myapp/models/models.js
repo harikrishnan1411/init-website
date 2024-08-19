@@ -25,6 +25,9 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tagling: {
+        type: String,
+    },
     description: {
         type: String,
         required: true
