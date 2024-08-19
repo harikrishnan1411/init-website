@@ -8,6 +8,10 @@ const { Event, Member } = require('../models/models');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+
+router.get('/', (req ,res)=>{
+  res.render('admin')
+})
 // Route to render the admin page
 router.get('/addMember', function(req, res, next) {
   res.render('addMember');
