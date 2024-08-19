@@ -17,6 +17,7 @@ router.get('/addMember', function(req, res, next) {
   res.render('addMember');
 });
 
+
 router.get('/addEvents', function(req, res, next) {
   res.render('addEvent');
 });
@@ -95,6 +96,28 @@ router.post("/addMember",  upload.single("image"), async (req, res) => {
   } catch (error) {
     console.error("Error adding Member:", error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+router.get('/eventManagement', async (req, res, next) => {   //Render all events
+  try {
+      const events = await Event.find({});
+      res.render('admin-events', { events: events });
+  } catch (error) {
+      console.error("Error fetching events:", error);
+      next(error); // Passes the error to the error handling middleware
+  }
+});
+
+
+router.get('/admin/eventManagement/:id/details', async (req, res) => {    //Search functionality
+  try {
+      const event = await Event.findById(req.params.id);
+      if (!event) return res.status(404).send("Event not found");
+      res.render('eventDetails', { event }); // Renders the event details page
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
   }
 });
 

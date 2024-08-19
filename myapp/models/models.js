@@ -20,6 +20,22 @@ const memberSchema = new mongoose.Schema({
         contentType: String
     }
 })
+
+const messageSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+    subject: {
+        type: String,
+        required: true
+    }
+})
+
 const eventSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -61,13 +77,19 @@ const eventSchema = new mongoose.Schema({
     },
     completed: {
         type: Boolean,
+    },
+    date: {
+        type: Date,
+        required: true
     }
 });
 
 const Event = mongoose.model('Event', eventSchema);
 const Member = mongoose.model('Member', memberSchema);
+const Message = mongoose.model('Message', messageSchema)
 
 module.exports = {
     Event,
-    Member
+    Member,
+    Message
 };
