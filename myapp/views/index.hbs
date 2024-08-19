@@ -44,46 +44,55 @@
             background-color: rgba(0, 0, 0, 0.8);
             transition: background-color 0.3s ease;
         }
+        
+    @media (min-width: 1024px) {
+        #navItems {
+            display: flex !important;
+        }
+        #hamburger, #mobileNav {
+            display: none !important;
+        }
+    }
     </style>
 </head>
 <body>
-    <nav class="w-screen bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
-        <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
+<nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
+<div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 mx-auto text-white flex items-center justify-between">
             <div class="lg:w-1/2">
-                <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</a href="/">
-            </div>
-            <div class="hidden lg:flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center lg:w-1/2 justify-end" id="navItems">
+            <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</a>
+        </div>
+<div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg" id="navItems">
                 <a href="/events" class="group">
-                    EVENTS
-                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </a>
-                <a href="/members" class="group">
-                    MEMBERS
-                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </a>
-                <a href="/contactus" class="group">
-                    CONTACT
-                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </a>
-                <a href="/about" class="group">
-                    ABOUT US
-                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                </a>
-            </div>
-            <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
+                EVENTS
+                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+            </a>
+            <a href="/members" class="group">
+                MEMBERS
+                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+            </a>
+            <a href="/contactus" class="group">
+                CONTACT
+                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+            </a>
+            <a href="/about" class="group">
+                ABOUT US
+                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+            </a>
         </div>
-        <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[75%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
-            <button class="self-end text-2xl" id="closeMobileNav">
-                <i class="fas fa-times"></i>
-            </button>
-            <a href="/events">EVENTS</a>
-            <a href="/members">MEMBERS</a>
-            <a href="/contactus">CONTACT</a>
-            <a href="/about">ABOUT US</a>
-        </div>
-    </nav>
+        <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[75%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+        <button class="self-end text-2xl" id="closeMobileNav">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="/events">EVENTS</a>
+        <a href="/members">MEMBERS</a>
+        <a href="/contactus">CONTACT</a>
+        <a href="/about">ABOUT US</a>
+    </div>
+</nav>
     <section class="bg-gray-900 text-white">
         <div class="relative h-screen bg-cover bg-center" style="background-image: url('https://wallpapers.com/images/hd/abstract-colorful-wispy-smoke-bfhit23ddy0e6bed.jpg');">
             <div class="absolute inset-0 bg-black opacity-50"></div>

@@ -34,7 +34,18 @@ const eventSchema = new mongoose.Schema({
         required: true
     },
     coordinators: {
-        type: String,
+        type: [
+            {
+                name: {
+                    type: String,
+                    required: true
+                },
+                number: {
+                    type: String,
+                    required: true
+                }
+            }
+        ],
         required: true
     },
     venue: {
@@ -44,6 +55,9 @@ const eventSchema = new mongoose.Schema({
     image: {
         data: Buffer,
         contentType: String
+    },
+    completed: {
+        type: Boolean,
     }
 });
 
