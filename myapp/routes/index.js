@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { Event, Member } = require('../models/models');
+const { Event, Member,Message } = require('../models/models');
 
 
 router.get("/image/:id", async (req, res) => {
@@ -52,6 +52,18 @@ router.get('/events', async function(req, res, next) {
   try {
     const events = await Event.find(); // Fetch all events from the database
     res.render('events', { events }); // Pass events data to the events view
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.post('/feedback', async function(req, res) {
+  try {
+    const { name, subject, message } = req.body;
+    const newMessage = new Message({ name, subject, message });
+    await newMessage.save();
+    //res.redirect('/'); // Redirect to home page after saving feedback
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
