@@ -41,7 +41,7 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tagling: {
+    tagline: {
         type: String,
     },
     description: {
@@ -77,6 +77,8 @@ const eventSchema = new mongoose.Schema({
     },
     completed: {
         type: Boolean,
+        default: false, 
+        required: true  
     },
     date: {
         type: Date,

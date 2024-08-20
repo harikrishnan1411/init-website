@@ -17,10 +17,12 @@ router.get('/addMember', function(req, res, next) {
   res.render('addMember');
 });
 
+router.get('/memberManagement', async (req,res,next) => {
+  const members = await Member.find({});
+  res.render('admin-members', { members: members });
+})
 
-router.get('/addEvents', function(req, res, next) {
-  res.render('addEvent');
-});
+
 // Route to retrieve an image by its ID
 router.get("/image/:id", async (req, res) => {
   try {
@@ -39,9 +41,13 @@ router.get("/image/:id", async (req, res) => {
   }
 });
 
+
+router.get('/addEvents', function(req, res, next) {
+  res.render('addEvent');
+});
 // Route to add a new event
-router.post("/addEvent",  upload.single("image"), async (req, res) => {
-  const { title, desc, fees, coordinator, venue } = req.body;
+router.post("/addEvent", upload.single("image"), async (req, res) => {
+  const { title, description, fees, coordinators, venue, date } = req.body;
 
   // Ensure req.file is present and contains the image data
   if (!req.file) {
@@ -50,14 +56,20 @@ router.post("/addEvent",  upload.single("image"), async (req, res) => {
 
   const newEvent = new Event({
     title: title,
-    description: desc,
+    description: description,
     fees: fees,
-    coordinators: coordinator,
+    coordinators: Array.isArray(coordinators)
+      ? coordinators.map(coordinator => ({
+          name: coordinator.name,
+          number: coordinator.number
+        }))
+      : [{ name: coordinators.name, number: coordinators.number }],
     venue: venue,
     image: {
       data: req.file.buffer, // Binary data of the image
       contentType: req.file.mimetype, // MIME type of the image
     },
+    date: date,
   });
 
   try {
@@ -69,6 +81,7 @@ router.post("/addEvent",  upload.single("image"), async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 router.post("/addMember",  upload.single("image"), async (req, res) => {
   const { name, designation, instagramLink, linkedinLink } = req.body;
@@ -92,7 +105,7 @@ router.post("/addMember",  upload.single("image"), async (req, res) => {
   try {
     await newMember.save();
     console.log("Member added successfully");
-    res.redirect("/admin");
+    res.redirect("/admin/eventManagement");
   } catch (error) {
     console.error("Error adding Member:", error);
     res.status(500).send("Internal Server Error");
@@ -120,5 +133,19 @@ router.get('/admin/eventManagement/:id/details', async (req, res) => {    //Sear
       res.status(500).send("Server Error");
   }
 });
+
+router.get('/admin/memberManagement/:id/details', async (req, res) => {
+  try {
+      const member = await Member.findById(req.params.id);
+      if (!member) return res.status(404).send("Member not found");
+
+      // Assuming you're using a view engine like Handlebars, Pug, or EJS:
+      res.render('memberDetails', { member }); // Renders the member details page with the member data
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+  }
+});
+
 
 module.exports = router;
