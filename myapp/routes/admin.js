@@ -99,6 +99,57 @@ router.post("/addMember",  upload.single("image"), async (req, res) => {
   }
 });
 
+// Route to update a member
+router.post("/updateMember/:id", upload.single("image"), async (req, res) => {
+  const memberId = req.params.id;
+  const { name, designation, instagramLink, linkedinLink } = req.body;
+
+  try {
+    const member = await Member.findById(memberId);
+
+    if (!member) {
+      return res.status(404).send("Member not found");
+    }
+
+    member.name = name;
+    member.designation = designation;
+    member.instagramLink = instagramLink;
+    member.linkedinLink = linkedinLink;
+
+    if (req.file) {
+      member.image.data = req.file.buffer;
+      member.image.contentType = req.file.mimetype;
+    }
+
+    await member.save();
+    console.log("Member updated successfully");
+    res.redirect("/admin/memberManagement");
+  } catch (error) {
+    console.error("Error updating Member:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route to delete a member by its ID
+router.delete("/deleteMember/:id", async (req, res) => {
+  const memberId = req.params.id;
+
+  try {
+    const member = await Member.findById(memberId);
+
+    if (!member) {
+      return res.status(404).send("Member not found");
+    }
+
+    await member.remove();
+    console.log("Member deleted successfully");
+    res.redirect("/admin/memberManagement");
+  } catch (error) {
+    console.error("Error deleting Member:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 router.get('/eventManagement', async (req, res, next) => {   //Render all events
   try {
       const events = await Event.find({});
@@ -118,6 +169,58 @@ router.get('/admin/eventManagement/:id/details', async (req, res) => {    //Sear
   } catch (err) {
       console.error(err);
       res.status(500).send("Server Error");
+  }
+});
+
+// Route to update an event
+router.post("/updateEvent/:id", upload.single("image"), async (req, res) => {
+  const eventId = req.params.id;
+  const { title, desc, fees, coordinator, venue } = req.body;
+
+  try {
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(404).send("Event not found");
+    }
+
+    event.title = title;
+    event.description = desc;
+    event.fees = fees;
+    event.coordinators = coordinator;
+    event.venue = venue;
+
+    if (req.file) {
+      event.image.data = req.file.buffer;
+      event.image.contentType = req.file.mimetype;
+    }
+
+    await event.save();
+    console.log("Event updated successfully");
+    res.redirect("/admin/eventManagement");
+  } catch (error) {
+    console.error("Error updating Event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route to delete an event by its ID
+router.delete("/deleteEvent/:id", async (req, res) => {
+  const eventId = req.params.id;
+
+  try {
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(404).send("Event not found");
+    }
+
+    await event.remove();
+    console.log("Event deleted successfully");
+    res.redirect("/admin/eventManagement");
+  } catch (error) {
+    console.error("Error deleting Event:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
