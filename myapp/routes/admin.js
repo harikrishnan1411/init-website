@@ -15,18 +15,16 @@ router.get("/addMember", function (req, res, next) {
   res.render("addMember");
 });
 
-<<<<<<< HEAD
 router.get('/memberManagement', async (req,res,next) => {
   const members = await Member.find({});
   res.render('admin-members', { members: members });
 })
 
 
-=======
 router.get("/addEvents", function (req, res, next) {
   res.render("addEvent");
 });
->>>>>>> 7beb51964b3118eee4f73c113803c344303d91bb
+
 // Route to retrieve an image by its ID
 router.get("/image/:id", async (req, res) => {
   try {
@@ -51,11 +49,8 @@ router.get('/addEvents', function(req, res, next) {
 });
 // Route to add a new event
 router.post("/addEvent", upload.single("image"), async (req, res) => {
-<<<<<<< HEAD
+
   const { title, description, fees, coordinators, venue, date } = req.body;
-=======
-  const { title, desc, fees, coordinator, venue } = req.body;
->>>>>>> 7beb51964b3118eee4f73c113803c344303d91bb
 
   // Ensure req.file is present and contains the image data
   if (!req.file) {
@@ -90,12 +85,8 @@ router.post("/addEvent", upload.single("image"), async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 
-router.post("/addMember",  upload.single("image"), async (req, res) => {
-=======
 router.post("/addMember", upload.single("image"), async (req, res) => {
->>>>>>> 7beb51964b3118eee4f73c113803c344303d91bb
   const { name, designation, instagramLink, linkedinLink } = req.body;
 
   // Ensure req.file is present and contains the image data
