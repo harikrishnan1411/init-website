@@ -63,7 +63,6 @@ router.post('/feedback', async function(req, res) {
     const { name, subject, message } = req.body;
     const newMessage = new Message({ name, subject, message });
     await newMessage.save();
-    //res.redirect('/'); // Redirect to home page after saving feedback
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
