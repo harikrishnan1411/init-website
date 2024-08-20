@@ -146,7 +146,7 @@ router.post("/updateMember/:id", upload.single("image"), async (req, res) => {
   }
 });
 
-// Route to delete a member by its ID
+// Route to delete a member by its Id
 router.delete("/deleteMember/:id", async (req, res) => {
   const memberId = req.params.id;
 
