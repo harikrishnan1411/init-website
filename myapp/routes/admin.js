@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const { Event, Member } = require("../models/models");
+const { render } = require("../app");
 
 // Use memory storage for multer to keep image in memory
 const storage = multer.memoryStorage();
@@ -177,12 +178,12 @@ router.get("/eventManagement", async (req, res, next) => {
   }
 });
 
-router.get("/admin/eventManagement/:id/details", async (req, res) => {
+router.get("/eventManagement/details/:id", async (req, res) => {
   //Search functionality
   try {
     const event = await Event.findById(req.params.id);
     if (!event) return res.status(404).send("Event not found");
-    res.render("eventDetails", { event }); // Renders the event details page
+    res.render("eventupdate", { event }); // Renders the event details page
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -190,54 +191,63 @@ router.get("/admin/eventManagement/:id/details", async (req, res) => {
 });
 
 // Route to update an event
-router.post("/updateEvent/:id", upload.single("image"), async (req, res) => {
-  const eventId = req.params.id;
-  const { title, desc, fees, coordinator, venue } = req.body;
-
+router.post("/eventManagement/updateEvent", upload.single("image"), async (req, res) => {
   try {
-    const event = await Event.findById(eventId);
+    const eventId = req.body.eventId; // Assuming event ID is sent in the form
+    const updates = {};
 
-    if (!event) {
-      return res.status(404).send("Event not found");
-    }
-
-    event.title = title;
-    event.description = desc;
-    event.fees = fees;
-    event.coordinators = coordinator;
-    event.venue = venue;
+    if (req.body.title) updates.title = req.body.title;
+    if (req.body.tagline) updates.tagline = req.body.tagline;
+    if (req.body.description) updates.description = req.body.description;
+    if (req.body.fees) updates.fees = req.body.fees;
+    if (req.body.venue) updates.venue = req.body.venue;
+    if (req.body.date) updates.date = new Date(req.body.date);
 
     if (req.file) {
-      event.image.data = req.file.buffer;
-      event.image.contentType = req.file.mimetype;
+        // If a new image is uploaded, update the image field
+        updates.image = req.file.path;
     }
 
-    await event.save();
-    console.log("Event updated successfully");
-    res.redirect("/admin/eventManagement");
-  } catch (error) {
-    console.error("Error updating Event:", error);
-    res.status(500).send("Internal Server Error");
-  }
+    if (req.body.coordinators) {
+        // Process coordinators
+        const coordinators = [];
+        for (let i = 0; i < req.body.coordinators.length; i++) {
+            const coordinator = {
+                name: req.body.coordinators[i].name,
+                number: req.body.coordinators[i].number
+            };
+            coordinators.push(coordinator);
+        }
+        updates.coordinators = coordinators;
+    }
+
+    const result = await Event.findByIdAndUpdate(eventId, updates, { new: true });
+
+    if (result) {
+      res.redirect("/admin/eventManagement")
+    } else {
+        res.status(404).send('Event not found');
+    }
+} catch (error) {
+    console.error('Error updating event:', error);
+    res.status(500).send('Server error');
+}
 });
 
-// Route to delete an event by its ID
-router.delete("/deleteEvent/:id", async (req, res) => {
-  const eventId = req.params.id;
-
+router.get('/eventManagement/delete/:id', async (req, res) => {
   try {
-    const event = await Event.findById(eventId);
+      const eventId = req.params.id;
+      const result = await Event.findByIdAndDelete(eventId);
 
-    if (!event) {
-      return res.status(404).send("Event not found");
-    }
+      if (result) {
+          res.redirect("/admin/eventManagement")
+      } else {
 
-    await event.remove();
-    console.log("Event deleted successfully");
-    res.redirect("/admin/eventManagement");
+          res.status(404).send('Event not found');
+      }
   } catch (error) {
-    console.error("Error deleting Event:", error);
-    res.status(500).send("Internal Server Error");
+      console.error('Error deleting event:', error);
+      res.status(500).send('Server error');
   }
 });
 

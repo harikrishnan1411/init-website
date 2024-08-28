@@ -151,8 +151,11 @@
                         <tr>
                             <td>{{this.title}}</td>
                             <td>{{this.date}}</td>
-                            <td><a class="btn btn-primary view-details-btn"
-                                    href="/admin/eventManagement/{{this._id}}/details">View Details</a></td>
+                            <td><a class="btn btn-danger"
+                                    href="/admin/eventManagement/delete/{{this._id}}">Delete</a>
+                                    <a class="btn btn-secondary"
+                                    href="/admin/eventManagement/details/{{this._id}}">Update</a>
+                                    </td>
                         </tr>
                         {{/each}}
                     </tbody>

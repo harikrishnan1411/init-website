@@ -10,21 +10,29 @@
     <title>Init-IT Association</title>
     <style>
         /* Ensure mobile nav links are styled and visible */
-      #mobileNav {
-    transform: translateX(100%); /* Start off-screen to the right */
-    transition: transform 0.3s ease;
-    top: 0; /* Aligns with the top of the viewport */
-    right: 0; /* Aligns with the right side of the viewport */
-    height: 100vh; /* Ensures it takes the full height of the viewport */
-    width: 75%; /* Adjust the width as needed */
-    padding: 0; /* Remove any default padding */
-    margin: 0; /* Remove any default margin */
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
-}
+        #mobileNav {
+            transform: translateX(100%);
+            /* Start off-screen to the right */
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Aligns with the top of the viewport */
+            right: 0;
+            /* Aligns with the right side of the viewport */
+            height: 100vh;
+            /* Ensures it takes the full height of the viewport */
+            width: 75%;
+            /* Adjust the width as needed */
+            padding: 0;
+            /* Remove any default padding */
+            margin: 0;
+            /* Remove any default margin */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5rem;
+        }
 
         #mobileNav a:hover {
             background-color: rgba(255, 255, 255, 0.2);
@@ -49,17 +57,20 @@
             transform: translateX(0);
         }
 
-#closeMobileNav {
-    margin: 1rem; /* Adjust margin if necessary */
-    align-self: flex-end; /* Align to the end of the container */
-}
+        #closeMobileNav {
+            margin: 1rem;
+            /* Adjust margin if necessary */
+            align-self: flex-end;
+            /* Align to the end of the container */
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
         /* General styling */
         body {
             background: linear-gradient(45deg, rgba(0, 212, 255, 1) 0%, rgba(11, 3, 45, 1) 100%);
-            background-image: url('https://images.unsplash.com/photo-1619204715997-1367fe5812f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1889&q=80');
+            background-image: url('images/bgimg.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -186,45 +197,47 @@
 </head>
 
 <body>
-    <nav class="w-screen bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
-    <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
-        <div class="lg:w-1/2">
-            <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Init()</a>
+    <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
+        <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
+            <div class="lg:w-1/2">
+                <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
+                    <img src="/images/logo.jpg" alt="Company Logo" class="h-12 object-contain">
+                </a>
+            </div>
+            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
+                id="navItems">
+                <a href="/events" class="group">
+                    EVENTS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/members" class="group">
+                    MEMBERS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/contactus" class="group">
+                    CONTACT
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/about" class="group">
+                    ABOUT US
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+            </div>
+            <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <div class="hidden lg:flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center lg:w-1/2 justify-end"
-            id="navItems">
-            <a href="/events" class="group">
-                EVENTS
-                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-            </a>
-            <a href="/members" class="group">
-                MEMBERS
-                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-            </a>
-            <a href="/contactus" class="group">
-                CONTACT
-                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-            </a>
-            <a href="/about" class="group">
-                ABOUT US
-                <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-            </a>
+        <div id="mobileNav"
+            class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+            <button class="self-end text-2xl" id="closeMobileNav">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="/events">EVENTS</a>
+            <a href="/members">MEMBERS</a>
+            <a href="/contactus">CONTACT</a>
+            <a href="/about">ABOUT US</a>
         </div>
-        <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-    <div id="mobileNav"
-        class="fixed inset-y-0 right-0 w-[75%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
-        <button class="self-end text-2xl" id="closeMobileNav">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="/events">EVENTS</a>
-        <a href="/members">MEMBERS</a>
-        <a href="/contactus">CONTACT</a>
-        <a href="/about">ABOUT US</a>
-    </div>
-</nav>
+    </nav>
 
     <div class="events-container">
         {{#each events}}
@@ -254,14 +267,14 @@
         });
 
         // Handle hamburger menu toggle
-       // Handle hamburger menu toggle
-document.getElementById('hamburger').addEventListener('click', function () {
-    document.getElementById('mobileNav').classList.add('active');
-});
+        // Handle hamburger menu toggle
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('mobileNav').classList.add('active');
+        });
 
-document.getElementById('closeMobileNav').addEventListener('click', function () {
-    document.getElementById('mobileNav').classList.remove('active');
-});
+        document.getElementById('closeMobileNav').addEventListener('click', function () {
+            document.getElementById('mobileNav').classList.remove('active');
+        });
 
     </script>
 </body>
