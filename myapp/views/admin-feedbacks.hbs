@@ -121,73 +121,30 @@
         <div class="sidebar">
             <a href="/admin">Dashboard</a>
             <a href="/admin/eventManagement">Event Management</a>
-            <a class="active" href="/admin/memberManagement">Member Management</a>
-            <a href="/userFeedbacks">User Feedbacks</a>
+            <a href="/admin/memberManagement">Member Management</a>
+            <a class = "active" href="/userFeedbacks">User Feedbacks</a>
         </div>
 
         <div class="content">
-            <div class="container">
-                <div class="input-group mt-3">
-                    <a class="btn btn-primary" href="/admin/addMember">Add Member</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {{#each Messages}}
+                <div class="bg-black rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Email: {{email}}</h2>
+                    <p class="text-gray-600">Subject: {{subject}}</p>
+                    <p class="text-gray-600">Message: {{message}}</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-gray-500">Date: {{date}}</span>
+                    </div>
                 </div>
-                <h1>Active Members</h1>
-                <table class="table-dark mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Designation</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        {{#each members}}
-                        {{#if this.active}}
-                        <tr>
-                            <td>{{this.name}}</td>
-                            <td>{{this.designation}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="/admin/MarkAsPastMember/{{this._id}}">Mark as Past Member</a>
-                                <a class="btn btn-danger" href="/admin/deleteMember/{{this._id}}">Remove this member</a>
-                            </td>
-                        </tr>
-                        {{/if}}
-                        {{/each}}
-                    </tbody>
-                </table>
-                <h1>Past Members</h1>
-                <table class="table-dark mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Designation</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        {{#each members}}
-                        {{#unless this.active}}
-                        <tr>
-                            <td>{{this.name}}</td>
-                            <td>{{this.designation}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="/admin/MarkAsPresentMember/{{this._id}}">Mark as Present Member</a>
-                                <a class="btn btn-danger" href="/admin/deleteMember/{{this._id}}">Remove this member</a>
-                            </td>
-                        </tr>
-                        {{/unless}}
-                        {{/each}}
-                    </tbody>
-                </table>
+                {{/each}}
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         
+
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

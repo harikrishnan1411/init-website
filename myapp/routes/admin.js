@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const { Event, Member } = require("../models/models");
+const { Event, Member, Message } = require("../models/models");
 const { render } = require("../app");
 
 // Use memory storage for multer to keep image in memory
@@ -51,7 +51,7 @@ router.get('/addEvents', function(req, res, next) {
 // Route to add a new event
 router.post("/addEvent", upload.single("image"), async (req, res) => {
 
-  const { title, description, fees, coordinators, venue, date } = req.body;
+  const { title, description, fees, coordinators, venue, date,formLink } = req.body;
 
   // Ensure req.file is present and contains the image data
   if (!req.file) {
@@ -69,6 +69,7 @@ router.post("/addEvent", upload.single("image"), async (req, res) => {
         }))
       : [{ name: coordinators.name, number: coordinators.number }],
     venue: venue,
+    formLink: formLink,
     image: {
       data: req.file.buffer, // Binary data of the image
       contentType: req.file.mimetype, // MIME type of the image
@@ -116,53 +117,59 @@ router.post("/addMember", upload.single("image"), async (req, res) => {
   }
 });
 
-// Route to update a member
-router.post("/updateMember/:id", upload.single("image"), async (req, res) => {
-  const memberId = req.params.id;
-  const { name, designation, instagramLink, linkedinLink } = req.body;
-
-  try {
-    const member = await Member.findById(memberId);
-
-    if (!member) {
-      return res.status(404).send("Member not found");
-    }
-
-    member.name = name;
-    member.designation = designation;
-    member.instagramLink = instagramLink;
-    member.linkedinLink = linkedinLink;
-
-    if (req.file) {
-      member.image.data = req.file.buffer;
-      member.image.contentType = req.file.mimetype;
-    }
-
-    await member.save();
-    console.log("Member updated successfully");
-    res.redirect("/admin/memberManagement");
-  } catch (error) {
-    console.error("Error updating Member:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 // Route to delete a member by its Id
-router.delete("/deleteMember/:id", async (req, res) => {
+router.get("/deleteMember/:id", async (req, res) => {
   const memberId = req.params.id;
 
   try {
-    const member = await Member.findById(memberId);
+    const member = await Member.findByIdAndDelete(memberId);
 
-    if (!member) {
-      return res.status(404).send("Member not found");
-    }
 
-    await member.remove();
     console.log("Member deleted successfully");
     res.redirect("/admin/memberManagement");
   } catch (error) {
     console.error("Error deleting Member:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route to change active field of a member to false
+router.get("/MarkAsPastMember/:id", async (req, res) => {
+  try {
+    const memberId = req.params.id;
+    const member = await Member.findById(memberId);
+
+    if (!member) {
+      return res.status(404).send("Member not found");
+    }
+
+    member.active = false;
+    await member.save();
+
+    console.log("Member marked as past successfully");
+    res.redirect("/admin/memberManagement");
+  } catch (error) {
+    console.error("Error deactivating Member:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+router.get("/MarkAsPresentMember/:id", async (req, res) => {
+  try {
+    const memberId = req.params.id;
+    const member = await Member.findById(memberId);
+
+    if (!member) {
+      return res.status(404).send("Member not found");
+    }
+
+    member.active = true;
+    await member.save();
+
+    console.log("Member marked as present successfully");
+    res.redirect("/admin/memberManagement");
+  } catch (error) {
+    console.error("Error deactivating Member:", error);
     res.status(500).send("Internal Server Error");
   }
 });
@@ -264,5 +271,34 @@ router.get('/admin/memberManagement/:id/details', async (req, res) => {
   }
 });
 
+router.get("/userFeedbacks", async (req, res) => {
+  try {
+    const Messages = await Message.find({});
+    res.render("admin-feedbacks", { Messages: Messages });
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+router.get("/eventManagement/markAsDone/:id", async (req, res) => {
+  try {
+    const eventId = req.params.id;
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(404).send("event not found");
+    }
+
+    event.completed = true;
+    await event.save();
+
+    console.log("Event marked as completed");
+    res.redirect("/admin/eventManagement");
+  } catch (error) {
+    console.error("Error deactivating Member:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 module.exports = router;

@@ -58,16 +58,17 @@ router.get('/events', async function(req, res, next) {
   }
 });
 
-router.post('/feedback', async function(req, res) {
-  try {
-    const { name, subject, message } = req.body;
-    const newMessage = new Message({ name, subject, message });
-    await newMessage.save();
-  } catch (err) {
+router.get('/events/:id',async (req,res)=>{
+  try{
+    const event = await Event.findById(req.params.id);
+    res.render('eventDetails',{event});
+  }catch(err){
     console.error(err);
     res.status(500).send('Server Error');
   }
-});
+})
+
+
 
 /* GET all members */
 router.get('/members', async function(req, res, next) {
@@ -79,5 +80,24 @@ router.get('/members', async function(req, res, next) {
     res.status(500).send('Server Error');
   }
 });
+
+router.post('/sendMessage', async function(req, res) { 
+  try { 
+    const { email, subject, message } = req.body;
+    const date = new Date();
+
+    const newMessage = new Message({
+      email,
+      subject,
+      message,
+      date }); 
+    await newMessage.save(); 
+    res.redirect('/contactus')
+  } catch (err) { 
+    console.error(err); 
+    res.status(500).send('Server Error'); 
+  } });
+
+
 
 module.exports = router;

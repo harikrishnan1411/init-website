@@ -27,7 +27,7 @@ const memberSchema = new mongoose.Schema({
 })
 
 const messageSchema = new mongoose.Schema({
-    name: {
+    email: {
         type: String,
         required: true
     },
@@ -38,7 +38,11 @@ const messageSchema = new mongoose.Schema({
     subject: {
         type: String,
         required: true
-    }
+    },
+    date: {
+        type: Date,
+        required: true
+    },
 })
 const eventSchema = new mongoose.Schema({
     title: {
@@ -87,6 +91,9 @@ const eventSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true
+    },
+    formLink: {
+        type: String
     }
 });
 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Init-IT Association</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Slab:wght@400;700&display=swap');
+
+        /* General styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        /* Mobile Nav */
+        #mobileNav {
+            transform: translateX(100%);
+            /* Start off-screen to the right */
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Aligns with the top of the viewport */
+            right: 0;
+            /* Aligns with the right side of the viewport */
+            height: 100vh;
+            /* Ensures it takes the full height of the viewport */
+            width: 100%;
+            /* Adjust the width as needed */
+            padding: 0;
+            /* Remove any default padding */
+            margin: 0;
+            /* Remove any default margin */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5rem;
+            z-index: 9999;
+        }
+
+        #mobileNav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #mobileNav.active {
+            transform: translateX(0);
+        }
+
+        #mobileNav {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Ensure it is aligned with the top */
+            left: 0;
+            /* Align with the left side */
+        }
+
+        /* Mobile Nav active state */
+        #mobileNav.active {
+            transform: translateX(0);
+        }
+
+        #closeMobileNav {
+            margin: 1rem;
+            /* Adjust margin if necessary */
+            align-self: flex-end;
+            /* Align to the end of the container */
+        }
+
+        /* Navbar scroll effect */
+        nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Event Details Section */
+        .
+
+        /* Event Title Styling */
+        /* Event Details Section */
+        .event-details {
+            padding: 80px 20px;
+            background-color: #f7fafc;
+            padding-top: 140px;
+            /* Adjust this to be equal or greater than the navbar height */
+            margin-top: 0;
+        }
+
+        /* Event Image Styling */
+        .event-image {
+            background-position: center;
+            background-size: cover;
+            height: 500px;
+            width: 100%;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Event Title Styling */
+        .event-details h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #2d3748;
+            margin-top: 15px;
+        }
+
+        /* Event Info */
+        .event-info {
+            margin-bottom: 30px;
+            color: #4a5568;
+        }
+
+        .event-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        /* Coordinators List */
+        .event-coordinators p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .event-coordinators ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .event-coordinators li {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin: 5px 0;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: white;
+            background-color: #3182ce;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #2b6cb0;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-gray-900">
+    <nav class="w-full bg-transparent h-fit fixed top-0 left-0 z-50 mb-10">
+        <div class="py-4 lg:px-8 px-4 max-w-[1240px] h-16 mx-auto text-white flex items-center justify-between">
+            <div class="lg:w-1/2">
+                <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
+                    <img src="/images/logo.jpg" alt="Company Logo" class="h-12 object-contain">
+                </a>
+            </div>
+            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
+                id="navItems">
+                <a href="/events" class="group">EVENTS<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/members" class="group">MEMBERS<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/contactus" class="group">CONTACT<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/about" class="group">ABOUT US<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+            </div>
+            <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileNav"
+            class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+            <button class="self-end text-2xl" id="closeMobileNav">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="/events">EVENTS</a>
+            <a href="/members">MEMBERS</a>
+            <a href="/contactus">CONTACT</a>
+            <a href="/about">ABOUT US</a>
+        </div>
+    </nav>
+    <br>
+    <section>
+        <div class="event-details max-w-screen-lg mx-auto mt-12">
+            <div class="event-image" style="background-image: url('/image/{{event._id}}');"></div>
+            <h1>{{event.title}}</h1>
+            <div class="event-info">
+                <p><em>{{event.tagline}}</em></p>
+                <p>{{event.description}}</p>
+                <p><strong>Venue:</strong> {{event.venue}}</p>
+                <p><strong>Date:</strong> {{event.date}}</p>
+            </div>
+            <div class="event-coordinators">
+                <p><strong>Coordinators:</strong></p>
+                <ul>
+                    {{#each event.coordinators}}
+                    <li>{{this.name}} - {{this.number}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{#unless event.completed}}
+            <a href="{{event.formLink}}" class="btn mt-8">Join</a>
+            {{/unless}}
+            {{#if event.completed}}
+            <p class="text-red-500 mt-8">Event has ended</p>
+            {{/if}}
+        </div>
+    </section>
+
+    <script>
+        // Navbar background change on scroll
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Handle hamburger menu toggle
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('mobileNav').classList.add('active');
+        });
+
+        document.getElementById('closeMobileNav').addEventListener('click', function () {
+            document.getElementById('mobileNav').classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>

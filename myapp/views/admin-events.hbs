@@ -138,6 +138,7 @@
                     <button id="searchBtn" class="btn btn-primary">Search</button>
                     <a class="btn btn-primary" href="/admin/addEvents">Add Event</a>
                 </div>
+                <h1>Upcoming Events</h1>
                 <table class="table-dark mt-4">
                     <thead>
                         <tr>
@@ -148,15 +149,44 @@
                     </thead>
                     <tbody>
                         {{#each events}}
+                        {{#unless this.completed}}
                         <tr>
                             <td>{{this.title}}</td>
                             <td>{{this.date}}</td>
-                            <td><a class="btn btn-danger"
+                            <td><a href="/admin/eventManagement/markAsDone" class = "btn btn-primary">Mark as completed</a>
+                                <a class="btn btn-danger"
                                     href="/admin/eventManagement/delete/{{this._id}}">Delete</a>
                                     <a class="btn btn-secondary"
                                     href="/admin/eventManagement/details/{{this._id}}">Update</a>
                                     </td>
                         </tr>
+                        {{/unless}}
+                        {{/each}}
+                    </tbody>
+                </table>
+                <h1>Completed Events</h1>
+                <table class="table-dark mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Event Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each events}}
+                        {{#if this.completed}}
+                        <tr>
+                            <td>{{this.title}}</td>
+                            <td>{{this.date}}</td>
+                            <td>
+                                <a class="btn btn-danger"
+                                    href="/admin/eventManagement/delete/{{this._id}}">Delete</a>
+                                    <a class="btn btn-secondary"
+                                    href="/admin/eventManagement/details/{{this._id}}">Update</a>
+                                    </td>
+                        </tr>
+                        {{/if}}
                         {{/each}}
                     </tbody>
                 </table>
