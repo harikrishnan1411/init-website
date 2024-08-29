@@ -39,12 +39,57 @@
 
         /* Mobile Nav */
         #mobileNav {
-            transform: translateX(-100%);
+            transform: translateX(100%);
+            /* Start off-screen to the right */
             transition: transform 0.3s ease;
+            top: 0;
+            /* Aligns with the top of the viewport */
+            right: 0;
+            /* Aligns with the right side of the viewport */
+            height: 100vh;
+            /* Ensures it takes the full height of the viewport */
+            width: 100%;
+            /* Adjust the width as needed */
+            padding: 0;
+            /* Remove any default padding */
+            margin: 0;
+            /* Remove any default margin */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5rem;
+            z-index: 9999;
+        }
+
+        #mobileNav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
         #mobileNav.active {
             transform: translateX(0);
+        }
+
+        #mobileNav {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Ensure it is aligned with the top */
+            left: 0;
+            /* Align with the left side */
+        }
+
+        /* Mobile Nav active state */
+        #mobileNav.active {
+            transform: translateX(0);
+        }
+
+        #closeMobileNav {
+            margin: 1rem;
+            /* Adjust margin if necessary */
+            align-self: flex-end;
+            /* Align to the end of the container */
         }
 
         /* Navbar scroll effect */
@@ -144,6 +189,7 @@
             background-color: #E0E7FF;
         }
 
+        
     </style>
 </head>
 
@@ -155,17 +201,19 @@
                     <img src="/images/logo.jpg" alt="Company Logo" class="h-12 object-contain">
                 </a>
             </div>
-            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg" id="navItems">
-                <a href="/events" class="group">EVENTS</a>
-                <a href="/members" class="group">MEMBERS</a>
-                <a href="/contactus" class="group">CONTACT</a>
-                <a href="/about" class="group">ABOUT US</a>
+            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
+                id="navItems">
+                <a href="/events" class="group">EVENTS<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/members" class="group">MEMBERS<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/contactus" class="group">CONTACT<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/about" class="group">ABOUT US<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
             </div>
             <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+        <div id="mobileNav"
+            class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
             <button class="self-end text-2xl" id="closeMobileNav">
                 <i class="fas fa-times"></i>
             </button>
@@ -186,12 +234,15 @@
                 <div class="sm:w-1/2 p-5 fade-in">
                     <span class="text-gray-500 border-b-2 border-indigo-600 uppercase">About us</span>
                     <h2 class="my-4 font-bold text-3xl sm:text-4xl">
-                        About <span class="text-indigo-600">Our Company</span>
+                        <span class="text-indigo-600">Our Association</span>
                     </h2>
-                    <p class="text-gray-700">
-                        We are a leading technology association focused on promoting innovation and excellence in the IT industry.
-                        Our mission is to foster collaboration, create opportunities, and support our members in their professional growth.
-                        From conferences to tech talks, we bring the best minds together to shape the future of IT.
+                    <p class="text--700 text-white">
+                        We are an association focused on promoting innovation and excellence in the IT and AD
+                        department.
+                        Our mission is to foster collaboration, create opportunities, and support our members in their
+                        professional growth.
+                        From conferences to tech talks to tech events, we bring the best minds together to shape the
+                        future of IT.
                     </p>
                 </div>
             </div>
@@ -217,7 +268,6 @@
         document.getElementById('closeMobileNav').addEventListener('click', function () {
             document.getElementById('mobileNav').classList.remove('active');
         });
-
         // Fade-in animation on scroll
         const fadeIns = document.querySelectorAll('.fade-in');
 

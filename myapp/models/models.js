@@ -18,7 +18,12 @@ const memberSchema = new mongoose.Schema({
     image: {
         data: Buffer,
         contentType: String
-    }
+    },
+    active: {
+        type: Boolean,
+        default: true, 
+        required: true  
+    },
 })
 
 const messageSchema = new mongoose.Schema({
@@ -35,7 +40,6 @@ const messageSchema = new mongoose.Schema({
         required: true
     }
 })
-
 const eventSchema = new mongoose.Schema({
     title: {
         type: String,

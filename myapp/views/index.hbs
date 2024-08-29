@@ -4,28 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="ajce, init, it department, amal jyothi, amal jyothi it, amal jyothi it department, init association, students it, amal jyothi students,Amal Jyothi,IT,Kerala, Engineering, B.Tech IT, ts harikrishnan">
+    <meta name="description" content="Init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts. We provide a platform for knowledge sharing, professional growth, and networking through a variety of events and resources. Stay updated with our latest events and news.">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Init-IT Association</title>
     <style>
         /* Ensure mobile nav links are styled and visible */
-        #mobileNav a {
-            color: white;
-            /* Make sure text is white */
-            text-decoration: none;
-            /* Remove underline */
-            font-size: 1.25rem;
-            /* Adjust font size */
-            text-transform: uppercase;
-            /* Uppercase text */
-            padding: 1rem;
-            /* Add padding for spacing */
-            width: 50%;
-            /* Make links full width */
-            text-align: center;
-            /* Center text */
-            transition: background-color 0.3s ease;
-            /* Smooth transition for background */
+        #mobileNav {
+            transform: translateX(100%);
+            /* Start off-screen to the right */
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Aligns with the top of the viewport */
+            right: 0;
+            /* Aligns with the right side of the viewport */
+            height: 100vh;
+            /* Ensures it takes the full height of the viewport */
+            width: 100%;
+            /* Adjust the width as needed */
+            padding: 0;
+            /* Remove any default padding */
+            margin: 0;
+            /* Remove any default margin */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5rem;
+            z-index: 9999;
         }
 
         #mobileNav a:hover {
@@ -53,8 +61,15 @@
             transform: translateX(0);
         }
 
+        #closeMobileNav {
+            margin: 1rem;
+            /* Adjust margin if necessary */
+            align-self: flex-end;
+            /* Align to the end of the container */
+        }
+
         nav.scrolled {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 1);
             transition: background-color 0.3s ease;
         }
 
@@ -126,6 +141,20 @@
                 background-position: 0% 50%;
             }
         }
+
+        #ind {
+            background-image: url('images/index.jpg');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(9px) saturate(170%);
+            -webkit-backdrop-filter: blur(10px) saturate(130%);
+            
+            
+        }
+        main {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
     </style>
 </head>
 
@@ -171,16 +200,15 @@
             <a href="/about">ABOUT US</a>
         </div>
     </nav>
-    <section class="bg-gray-900 text-white">
+    <main>
+    <section class="bg-gray-900 text-white" id="ind">
         <div class="relative h-screen bg-cover bg-center"
             style="background-image: url('https://images.unsplash.com/photo-1581091870627-3a9b79368061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIwfHxjb2RlfGVufDB8fHx8MTY5MzI1NzMyMA&ixlib=rb-4.0.3&q=80&w=1080');">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative z-10 flex items-center justify-center h-full px-4 py-32 lg:px-8">
-                <div class="text-center fade-in">
-                    <h1
-                        class="bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
-                        init()
-                        <span class="sm:block">IT Association</span>
+                <div class="text-center fade-in" id="txt">
+                    <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+                        init() <span class="sm:block">IT Association</span>
                     </h1>
                     <p class="mx-auto mt-4 max-w-xl sm:text-xl">
                         Empowering IT professionals and enthusiasts through knowledge sharing, events, and networking.
@@ -202,7 +230,7 @@
             <div class="text-center mb-12 fade-in">
                 <h2 class="text-3xl font-extrabold">What We Do</h2>
                 <p class="mt-4 max-w-2xl mx-auto">
-                    Init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts.
+                    init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts.
                     We provide a platform for knowledge sharing, professional growth, and networking through a variety
                     of events and resources.
                 </p>
@@ -244,12 +272,18 @@
                 {{!-- <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-linkedin-in"></i></a> --}}
+
                 <a href="https://www.instagram.com/init_society/" class="text-white hover:text-gray-400"><i
                         class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/init-association/posts/?feedView=all"
+                    class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
             </div>
-            <p>&copy; 2024 Init() IT Association. All rights reserved.</p>
+            <p>&copy; 2024 init() IT Association. All rights reserved.</p>
+            <p>This site was made by T S Harikrishnan <a href="https://www.linkedin.com/in/t-s-harikrishnan-123497224/"
+                    class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a></p>
         </div>
     </footer>
+    </main>
 
 
     <script>

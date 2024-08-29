@@ -28,7 +28,7 @@
             /* Aligns with the right side of the viewport */
             height: 100vh;
             /* Ensures it takes the full height of the viewport */
-            width: 75%;
+            width: 100%;
             /* Adjust the width as needed */
             padding: 0;
             /* Remove any default padding */
@@ -40,6 +40,7 @@
             flex-direction: column;
             align-items: center;
             font-size: 1.5rem;
+            z-index: 9999;
         }
 
         #mobileNav a:hover {
@@ -82,6 +83,19 @@
         nav.scrolled {
             background-color: rgba(0, 0, 0, 0.8);
             transition: background-color 0.3s ease;
+        }
+
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            /* Adjust based on your needs */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
@@ -131,8 +145,8 @@
             <a href="/about">ABOUT US</a>
         </div>
     </nav>
-    <section class="bg-white dark:bg-gray-900">
-        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+    <section class="bg-white dark:bg-gray-900 mt-8 fade-in">
+        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md fade-in">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us
             </h2>
             <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Reach out to us
@@ -188,6 +202,27 @@
 
         document.getElementById('closeMobileNav').addEventListener('click', function () {
             document.getElementById('mobileNav').classList.remove('active');
+        });
+
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.6,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
         });
 
     </script>
