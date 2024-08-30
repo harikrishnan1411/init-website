@@ -122,7 +122,8 @@
             <a href="/admin">Dashboard</a>
             <a class = "active" href="/admin/eventManagement">Event Management</a>
             <a href="/admin/memberManagement">Member Management</a>
-            <a href="/userFeedbacks">User Feedbacks</a>
+            <a href="/admin/userFeedbacks">User Feedbacks</a>
+            <a href="/admin/logout">Logout</a>
         </div>
 
         <div class="content">
@@ -153,7 +154,7 @@
                         <tr>
                             <td>{{this.title}}</td>
                             <td>{{this.date}}</td>
-                            <td><a href="/admin/eventManagement/markAsDone" class = "btn btn-primary">Mark as completed</a>
+                            <td><a href="/admin/eventManagement/markAsDone/{{this._id}}" class = "btn btn-primary">Mark as completed</a>
                                 <a class="btn btn-danger"
                                     href="/admin/eventManagement/delete/{{this._id}}">Delete</a>
                                     <a class="btn btn-secondary"

@@ -1,28 +1,111 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const { Event, Member, Message } = require("../models/models");
+const { Event, Member, Message, Admin } = require("../models/models");
 const { render } = require("../app");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const authenticateToken = require('../middleware/jwtMiddleware');
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
+
 
 // Use memory storage for multer to keep image in memory
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.get("/", (req, res) => {
+router.get("/login", (req,res)=>{
+  res.render("admin-login");
+})
+
+router.post('/login', async (req, res) => {
+  const { adminEmail, password } = req.body;
+  
+  try {
+    const admin = await Admin.findOne({ adminEmail });
+    if (!admin) {
+      return res.status(401).json({ message: 'Invalid adminEmail or password' });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, admin.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid adminEmail or password' });
+    }
+
+    // Check if we get here before JWT generation
+    console.log("Login successful, generating token...");
+
+    const token = jwt.sign({ id: admin._id, adminEmail: admin.adminEmail }, 'zxcvbnm', { expiresIn: '1h' });
+
+    res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+    console.log('Token:', token);
+
+
+
+    res.redirect('/admin');
+    
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+router.get('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/admin/login')
+}
+);
+
+router.post('/register', async (req, res) => {
+  const { adminEmail, password } = req.body;
+
+  // Input validation
+  if (!adminEmail || !password) {
+    return res.status(400).json({ message: 'Email and password are required' });
+  }
+
+  try {
+    // Check if admin already exists
+    const existingAdmin = await Admin.findOne({ adminEmail });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'Admin already exists' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new admin
+    const newAdmin = new Admin({
+      adminEmail,
+      password: hashedPassword
+    });
+
+    // Save the admin to the database
+    await newAdmin.save();
+
+    res.status(201).json({ message: 'Admin registered successfully' });
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.get("/",authenticateToken, (req, res) => {
   res.render("admin");
 });
 // Route to render the admin page
-router.get("/addMember", function (req, res, next) {
+router.get("/addMember",authenticateToken, function (req, res, next) {
   res.render("addMember");
 });
 
-router.get('/memberManagement', async (req,res,next) => {
+router.get('/memberManagement',authenticateToken, async (req,res,next) => {
   const members = await Member.find({});
   res.render('admin-members', { members: members });
 })
 
 
-router.get("/addEvents", function (req, res, next) {
+router.get("/addEvents",authenticateToken, function (req, res, next) {
   res.render("addEvent");
 });
 
@@ -45,11 +128,11 @@ router.get("/image/:id", async (req, res) => {
 });
 
 
-router.get('/addEvents', function(req, res, next) {
+router.get('/addEvents',authenticateToken, function(req, res, next) {
   res.render('addEvent');
 });
 // Route to add a new event
-router.post("/addEvent", upload.single("image"), async (req, res) => {
+router.post("/addEvent",authenticateToken, upload.single("image"), async (req, res) => {
 
   const { title, description, fees, coordinators, venue, date,formLink } = req.body;
 
@@ -88,7 +171,7 @@ router.post("/addEvent", upload.single("image"), async (req, res) => {
 });
 
 
-router.post("/addMember", upload.single("image"), async (req, res) => {
+router.post("/addMember",authenticateToken, upload.single("image"), async (req, res) => {
   const { name, designation, instagramLink, linkedinLink } = req.body;
 
   // Ensure req.file is present and contains the image data
@@ -118,7 +201,7 @@ router.post("/addMember", upload.single("image"), async (req, res) => {
 });
 
 // Route to delete a member by its Id
-router.get("/deleteMember/:id", async (req, res) => {
+router.get("/deleteMember/:id",authenticateToken, async (req, res) => {
   const memberId = req.params.id;
 
   try {
@@ -134,7 +217,7 @@ router.get("/deleteMember/:id", async (req, res) => {
 });
 
 // Route to change active field of a member to false
-router.get("/MarkAsPastMember/:id", async (req, res) => {
+router.get("/MarkAsPastMember/:id",authenticateToken, async (req, res) => {
   try {
     const memberId = req.params.id;
     const member = await Member.findById(memberId);
@@ -154,7 +237,7 @@ router.get("/MarkAsPastMember/:id", async (req, res) => {
   }
 });
 
-router.get("/MarkAsPresentMember/:id", async (req, res) => {
+router.get("/MarkAsPresentMember/:id",authenticateToken, async (req, res) => {
   try {
     const memberId = req.params.id;
     const member = await Member.findById(memberId);
@@ -174,7 +257,7 @@ router.get("/MarkAsPresentMember/:id", async (req, res) => {
   }
 });
 
-router.get("/eventManagement", async (req, res, next) => {
+router.get("/eventManagement",authenticateToken, async (req, res, next) => {
   //Render all events
   try {
     const events = await Event.find({});
@@ -185,7 +268,7 @@ router.get("/eventManagement", async (req, res, next) => {
   }
 });
 
-router.get("/eventManagement/details/:id", async (req, res) => {
+router.get("/eventManagement/details/:id",authenticateToken, async (req, res) => {
   //Search functionality
   try {
     const event = await Event.findById(req.params.id);
@@ -198,7 +281,7 @@ router.get("/eventManagement/details/:id", async (req, res) => {
 });
 
 // Route to update an event
-router.post("/eventManagement/updateEvent", upload.single("image"), async (req, res) => {
+router.post("/eventManagement/updateEvent",authenticateToken, upload.single("image"), async (req, res) => {
   try {
     const eventId = req.body.eventId; // Assuming event ID is sent in the form
     const updates = {};
@@ -241,7 +324,7 @@ router.post("/eventManagement/updateEvent", upload.single("image"), async (req, 
 }
 });
 
-router.get('/eventManagement/delete/:id', async (req, res) => {
+router.get('/eventManagement/delete/:id',authenticateToken, async (req, res) => {
   try {
       const eventId = req.params.id;
       const result = await Event.findByIdAndDelete(eventId);
@@ -258,7 +341,7 @@ router.get('/eventManagement/delete/:id', async (req, res) => {
   }
 });
 
-router.get('/admin/memberManagement/:id/details', async (req, res) => {
+router.get('/admin/memberManagement/:id/details',authenticateToken, async (req, res) => {
   try {
       const member = await Member.findById(req.params.id);
       if (!member) return res.status(404).send("Member not found");
@@ -271,7 +354,7 @@ router.get('/admin/memberManagement/:id/details', async (req, res) => {
   }
 });
 
-router.get("/userFeedbacks", async (req, res) => {
+router.get("/userFeedbacks",authenticateToken, async (req, res) => {
   try {
     const Messages = await Message.find({});
     res.render("admin-feedbacks", { Messages: Messages });
@@ -281,7 +364,7 @@ router.get("/userFeedbacks", async (req, res) => {
   }
 });
 
-router.get("/eventManagement/markAsDone/:id", async (req, res) => {
+router.get("/eventManagement/markAsDone/:id",authenticateToken, async (req, res) => {
   try {
     const eventId = req.params.id;
     const event = await Event.findById(eventId);

@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const jwt = require('jsonwebtoken');
+const authenticateToken = require('./middleware/jwtMiddleware');
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
