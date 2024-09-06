@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 // Secret key (you should store this in a secure place like environment variables)
-const secretKey = process.env.JWT_SECRET;
-console.log('JWT_SECRET:', process.env.JWT_SECRET);
-
+require('dotenv').config();
+var JWT_SECRET = process.env.JWT_SECRET;
 
 
 // Middleware function to authenticate token
@@ -15,7 +14,7 @@ function authenticateToken(req, res, next) {
     }
 
     try {
-        const user = jwt.verify(token, 'zxcvbnm');
+        const user = jwt.verify(token, JWT_SECRET);
         req.user = user;
         next();
     } catch (err) {

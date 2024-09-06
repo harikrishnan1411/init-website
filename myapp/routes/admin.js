@@ -7,7 +7,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authenticateToken = require('../middleware/jwtMiddleware');
 require('dotenv').config();
-const JWT_SECRET = process.env.JWT_SECRET;
+var JWT_SECRET = process.env.JWT_SECRET;
+
 
 
 // Use memory storage for multer to keep image in memory
@@ -35,7 +36,7 @@ router.post('/login', async (req, res) => {
     // Check if we get here before JWT generation
     console.log("Login successful, generating token...");
 
-    const token = jwt.sign({ id: admin._id, adminEmail: admin.adminEmail }, 'zxcvbnm', { expiresIn: '1h' });
+    const token = jwt.sign({ id: admin._id, adminEmail: admin.adminEmail }, JWT_SECRET, { expiresIn: '1h' });
 
     res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
     console.log('Token:', token);
@@ -58,6 +59,7 @@ router.get('/logout', (req, res) => {
 );
 
 router.post('/register', async (req, res) => {
+  
   const { adminEmail, password } = req.body;
 
   // Input validation
@@ -92,6 +94,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.get("/",authenticateToken, (req, res) => {
+  
   res.render("admin");
 });
 // Route to render the admin page
