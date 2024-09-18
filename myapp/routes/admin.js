@@ -3,7 +3,8 @@ const router = express.Router();
 const multer = require("multer");
 const { Event, Member, Message, Admin } = require("../models/models");
 const { render } = require("../app");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+
 const jwt = require('jsonwebtoken');
 const authenticateToken = require('../middleware/jwtMiddleware');
 require('dotenv').config();
