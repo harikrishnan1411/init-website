@@ -4,12 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="ajce, init, it department, amal jyothi, amal jyothi it, amal jyothi it department, init association, students it, amal jyothi students,Amal Jyothi,IT,Kerala, Engineering, B.Tech IT, ts harikrishnan">
-    <meta name="description" content="Init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts. We provide a platform for knowledge sharing, professional growth, and networking through a variety of events and resources. Stay updated with our latest events and news.">
+    <meta name="keywords"
+        content="ajce, init, it department, amal jyothi, amal jyothi it, amal jyothi it department, init association, students it, amal jyothi students,Amal Jyothi,IT,Kerala, Engineering, B.Tech IT, ts harikrishnan">
+    <meta name="description"
+        content="Init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts. We provide a platform for knowledge sharing, professional growth, and networking through a variety of events and resources. Stay updated with our latest events and news.">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Kode+Mono:wght@400..700&display=swap"
+        rel="stylesheet">
     <title>init() IT Association</title>
     <style>
+        nav,
+        h1 {
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
+        }
+
         /* Ensure mobile nav links are styled and visible */
         #mobileNav {
             transform: translateX(100%);
@@ -122,8 +137,18 @@
             backdrop-filter: blur(9px) saturate(170%);
             -webkit-backdrop-filter: blur(10px) saturate(130%);
         }
-       
 
+        /* Unique fade-in classes */
+        .fade-in-empowering {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible-empowering {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -170,92 +195,142 @@
         </div>
     </nav>
     <main>
-    <section class="bg-gray-900 text-white" id="ind">
-        <div class="relative h-screen bg-cover bg-center"
-            style="background-image: url('https://images.unsplash.com/photo-1581091870627-3a9b79368061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIwfHxjb2RlfGVufDB8fHx8MTY5MzI1NzMyMA&ixlib=rb-4.0.3&q=80&w=1080');">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="relative z-10 flex items-center justify-center h-full px-4 py-32 lg:px-8">
-                <div class="text-center fade-in" id="txt">
-                    <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-                        init() <span class="sm:block">IT Association</span>
-                    </h1>
-                    <p class="mx-auto mt-4 max-w-xl sm:text-xl">
-                        Empowering IT professionals and enthusiasts through knowledge sharing, events, and networking.
-                    </p>
-                    <div class="mt-8 flex flex-wrap justify-center gap-4">
-                        <a class="block w-full rounded border border-green-500 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                            href="#sec">
-                            Dive In!
-                        </a>
+        <section class="bg-gray-900 text-white" id="ind">
+            <div class="relative h-screen bg-cover bg-center"
+                style="background-image: url('https://images.unsplash.com/photo-1581091870627-3a9b79368061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIwfHxjb2RlfGVufDB8fHx8MTY5MzI1NzMyMA&ixlib=rb-4.0.3&q=80&w=1080');">
+                <div class="absolute inset-0 bg-black opacity-50"></div>
+                <div class="relative z-10 flex items-center justify-center h-full px-4 py-32 lg:px-8">
+                    <div class="text-center" id="txt">
+                        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+                            id="typewriter">
+                            <span class="sm:block"></span>
+                        </h1>
+                        <p class="mx-auto mt-4 max-w-xl sm:text-xl fade-in-empowering" id="empowering-text">
+                            Empowering IT professionals and enthusiasts through knowledge sharing, events, and
+                            networking.
+                        </p>
+                        <div class="mt-8 flex flex-wrap justify-center gap-4 fade-in-empowering" id="dive-button">
+                            <a class="block w-full rounded border border-green-500 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                                href="#sec">
+                                Dive In!
+                            </a>
+                        </div>
 
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="bg-gray-800 text-white py-16" id="sec">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center mb-12 fade-in">
-                <h2 class="text-3xl font-extrabold">What We Do</h2>
-                <p class="mt-4 max-w-2xl mx-auto">
-                    init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts.
-                    We provide a platform for knowledge sharing, professional growth, and networking through a variety
-                    of events and resources.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
-                    <h3 class="text-xl font-bold mb-4">Workshops & Seminars</h3>
-                    <p>
-                        We host regular workshops and seminars on the latest trends and technologies in IT, allowing
-                        members to stay updated and enhance their skills.
+        <section class="bg-gray-800 text-white py-16" id="sec">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-3xl font-extrabold">What We Do</h2>
+                    <p class="mt-4 max-w-2xl mx-auto">
+                        init() IT Association is dedicated to fostering a community of IT professionals and enthusiasts.
+                        We provide a platform for knowledge sharing, professional growth, and networking through a
+                        variety
+                        of events and resources.
                     </p>
                 </div>
-                <div class="bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
-                    <h3 class="text-xl font-bold mb-4">Networking Events & Talk Sessions</h3>
-                    <p>
-                        Our networking events bring together IT professionals from various sectors, providing
-                        opportunities to build valuable connections and collaborate on projects.
-                    </p>
-                </div>
-                <div class="bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
-                    <h3 class="text-xl font-bold mb-4">Competitions</h3>
-                    <p>
-                        Participate in exciting competitions that challenge your technical skills, creativity, and
-                        problem-solving abilities.
-                        These competitions range from hackathons to coding contests, providing a platform to showcase
-                        talent and win recognition.
-                    </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
+                        <h3 class="text-xl font-bold mb-4">Workshops & Seminars</h3>
+                        <p>
+                            We host regular workshops and seminars on the latest trends and technologies in IT, allowing
+                            members to stay updated and enhance their skills.
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
+                        <h3 class="text-xl font-bold mb-4">Networking Events & Talk Sessions</h3>
+                        <p>
+                            Our networking events bring together IT professionals from various sectors, providing
+                            opportunities to build valuable connections and collaborate on projects.
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
+                        <h3 class="text-xl font-bold mb-4">Competitions</h3>
+                        <p>
+                            Participate in exciting competitions that challenge your technical skills, creativity, and
+                            problem-solving abilities.
+                            These competitions range from hackathons to coding contests, providing a platform to
+                            showcase
+                            talent and win recognition.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-    </section>
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4 lg:px-8 text-center">
-            <h3 class="text-xl font-bold mb-4">Stay Connected</h3>
-            <p class="mb-4">Follow us on social media and stay updated with our latest events and news.</p>
-            <div class="flex justify-center gap-4 mb-4">
-                {{!-- <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-linkedin-in"></i></a> --}}
+        </section>
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="container mx-auto px-4 lg:px-8 text-center">
+                <h3 class="text-xl font-bold mb-4">Stay Connected</h3>
+                <p class="mb-4">Follow us on social media and stay updated with our latest events and news.</p>
+                <div class="flex justify-center gap-4 mb-4">
+                    {{!-- <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-linkedin-in"></i></a> --}}
 
-                <a href="https://www.instagram.com/init_society/" class="text-white hover:text-gray-400"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/init-association/posts/?feedView=all"
-                    class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/init_society/" class="text-white hover:text-gray-400"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/init-association/posts/?feedView=all"
+                        class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 init() IT Association. All rights reserved.</p>
+                <p>This site was made by T S Harikrishnan <a
+                        href="https://www.linkedin.com/in/t-s-harikrishnan-123497224/"
+                        class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a></p>
             </div>
-            <p>&copy; 2024 init() IT Association. All rights reserved.</p>
-            <p>This site was made by T S Harikrishnan <a href="https://www.linkedin.com/in/t-s-harikrishnan-123497224/"
-                    class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a></p>
-        </div>
-    </footer>
+        </footer>
     </main>
 
 
     <script>
+        const words = ["init() IT Association"];
+        let i = 0;
+        let j = 0;
+        let currentWord = "";
+        let isDeleting = false;
+        let typingDone = false; // To check when typing is complete
+
+        function type() {
+            currentWord = words[i];
+
+            if (isDeleting) {
+                document.getElementById("typewriter").textContent = currentWord.substring(0, j - 1);
+                j--;
+                if (j == 0) {
+                    isDeleting = false;
+                    i++;
+                    if (i == words.length) {
+                        i = 0;
+                    }
+                }
+            } else {
+                document.getElementById("typewriter").textContent = currentWord.substring(0, j + 1);
+                if (j == currentWord.length) {
+                    
+                    typingDone = true; // Mark typing as complete when the word is fully typed
+                    showElementsAfterTyping(); // Call this function to fade in elements
+                }
+                j++;
+            }
+            setTimeout(type, 120); // Continue typing if not done
+        }
+
+        // Function to fade in elements after typing is complete
+        function showElementsAfterTyping() {
+            setTimeout(() => {
+                document.getElementById("empowering-text").classList.add('visible-empowering'); // Show the text
+                document.getElementById("dive-button").classList.add('visible-empowering');     // Show the button
+            }, 500); // Adjust the delay if needed
+        }
+
+        window.onload = function () {
+            type();
+        };
+
+
         // JavaScript for toggling mobile navigation
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobileNav');

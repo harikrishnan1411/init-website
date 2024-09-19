@@ -13,6 +13,25 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
+const session = require('express-session');
+const flash = require('connect-flash');
+
+app.use(session({
+  secret: JWT_SECRET, 
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
+
+
+
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOURL||"mongodb+srv://harikrishnan123:Ci5wxDxk77liZxdO@init.lekb52w.mongodb.net/?retryWrites=true&w=majority&appName=init")
 .then( ()=> {console.log("Database connected")})

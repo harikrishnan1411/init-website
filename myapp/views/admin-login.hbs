@@ -8,12 +8,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Init-IT Association</title>
+    <style>
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-900 text-gray-200">
     <div class="flex flex-col items-center justify-center min-h-screen">
         <div class="max-w-md w-full px-6 py-8 bg-gray-800 shadow-lg rounded-lg">
             <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Admin Login</h2>
+
+            <!-- Flash Messages -->
+            {{#if success_msg}}
+            <div class="alert bg-green-100 text-green-800 border border-green-300 rounded-md p-4 mb-4">
+                {{success_msg}}
+            </div>
+            {{/if}}
+
+            {{#if error_msg}}
+            <div class="alert bg-red-100 text-red-800 border border-red-300 rounded-md p-4 mb-4">
+                {{error_msg}}
+            </div>
+            {{/if}}
+
             <form class="space-y-6" action="/admin/login" method="post">
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
@@ -101,9 +123,6 @@
                     }
                     return response.json();
                 })
-                .then(data => {
-                    alert(data.message);  // Display the message from the backend
-                })
                 .catch(error => {
                     alert('An error occurred. Please try again.');
                     console.error('Error:', error);
@@ -168,15 +187,21 @@
                     },
                     body: JSON.stringify({ adminEmail, newPassword })
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert('Password reset successfully!');
-                            document.getElementById('newPasswordModal').classList.add('hidden');
-                        } else {
-                            alert('Failed to reset password. Please try again.');
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Invalid OTP');
                         }
-                    });
+                        return response.json();
+                    })
+                    .then(data => {
+
+                        alert('Password reset successfully!');
+                        document.getElementById('newPasswordModal').classList.add('hidden');
+                    })
+                    .catch(error => {
+                        alert('An error occurred. Please try again.');
+                    })
+
             } else {
                 alert('Passwords do not match. Please try again.');
             }

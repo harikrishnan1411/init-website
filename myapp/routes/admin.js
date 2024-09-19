@@ -12,6 +12,7 @@ var JWT_SECRET = process.env.JWT_SECRET;
 
 
 
+
 // Use memory storage for multer to keep image in memory
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -32,19 +33,19 @@ router.post('/login', async (req, res) => {
   try {
     const admin = await Admin.findOne({ adminEmail });
     if (!admin) {
-      return res.status(401).json({ message: 'Invalid adminEmail or password' });
+      req.flash('error_msg', 'Invalid email address.');
+      return res.redirect('/admin/login');
     }
 
 const isPasswordValid = await bcrypt.compare(password, admin.password);
 if (!isPasswordValid) {
-  return res.status(401).json({ message: 'Invalid adminEmail or password' });
+  req.flash('error_msg', 'Incorrect password.');
+  return res.redirect('/admin/login');
 }
 
-// Check if we get here before JWT generation
-console.log("Login successful, generating token...");
+req.flash('success_msg', 'Login successful.');
 const token = jwt.sign({ id: admin._id, adminEmail: admin.adminEmail }, JWT_SECRET, { expiresIn: '1h' });
 res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-console.log('Token:', token);
 res.redirect('/admin');
 
   } catch (error) {
