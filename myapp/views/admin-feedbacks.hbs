@@ -10,11 +10,12 @@
         body {
             background-color: #272727;
             color: #ffffff;
+            margin: 0;
+            padding: 0;
         }
 
         .sidebar {
-            margin: 0;
-            padding: 0;
+            margin-left: -12px;
             width: 200px;
             background-color: #1f1f1f;
             position: fixed;
@@ -45,11 +46,6 @@
             height: 1000px;
         }
 
-        .card {
-            background-color: #2b2b2b;
-            color: #ffffff;
-            border: none;
-        }
 
         .btn-primary {
             background-color: #343a40;
@@ -61,34 +57,6 @@
             border-color: #575757;
         }
 
-        table {
-            background-color: #2b2b2b;
-            color: #ffffff;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        th {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-
-        td {
-            background-color: #2b2b2b;
-            color: #ffffff;
-        }
-
-        table tr:hover {
-            background-color: #3a3a3a;
-        }
-
-        table th,
-        table td {
-            border: 1px solid #444;
-            padding: 0.75rem;
-            vertical-align: top;
-            border-top: 1px solid #4d4d4d;
-        }
 
         @media screen and (max-width: 700px) {
             .sidebar {
@@ -112,6 +80,24 @@
                 float: none;
             }
         }
+        .card-body.bg-dark {
+    background-color: #1a1a1a; /* Dark background for cards */
+}
+.btn-outline-light {
+    border-color: #f8f9fa; /* Light outline for buttons */
+    color: #f8f9fa; /* Button text color */
+}
+.btn-outline-light:hover {
+    background-color: #f8f9fa;
+    color: #212529; /* Dark text on hover */
+}
+.text-muted {
+    color: #6c757d !important; /* Muted gray text */
+}
+.text-light {
+    color: #f8f9fa !important; /* Light text */
+}
+
     </style>
 </head>
 
@@ -122,29 +108,31 @@
             <a href="/admin">Dashboard</a>
             <a href="/admin/eventManagement">Event Management</a>
             <a href="/admin/memberManagement">Member Management</a>
-            <a class = "active" href="/admin/userFeedbacks">User Feedbacks</a>
+            <a class="active" href="/admin/userFeedbacks">User Feedbacks</a>
             <a href="/admin/logout">Logout</a>
         </div>
 
-        <div class="content">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="container py-5">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {{#each Messages}}
-                <div class="bg-black rounded-lg shadow-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4">Email: {{email}}</h2>
-                    <p class="text-gray-600">Subject: {{subject}}</p>
-                    <p class="text-gray-600">Message: {{message}}</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-gray-500">Date: {{date}}</span>
+                <div class="col">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4 bg-dark text-white">
+                            <h6 class="text-muted mb-2">From:</h6>
+                            <h5 class="card-title text-light">{{email}}</h5>
+                            <hr class="text-muted">
+                            <p class="text-muted mb-1"><strong>Subject:</strong> {{subject}}</p>
+                            <p class="text-muted mb-3"><strong>Message:</strong> {{message}}</p>
+                        </div>
+                        <div class="card-footer bg-dark border-0 d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Received on: {{date}}</small>
+                        </div>
                     </div>
                 </div>
                 {{/each}}
             </div>
         </div>
     </div>
-    <script>
-        
-
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

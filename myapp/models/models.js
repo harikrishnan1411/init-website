@@ -100,6 +100,7 @@ const eventSchema = new mongoose.Schema({
 const adminSchema = new mongoose.Schema({
   adminEmail: { type: String, required: true },
   password: { type: String, required: true },
+  otp: { type: String },
 });
 
 const Admin = mongoose.model("Admin", adminSchema);
