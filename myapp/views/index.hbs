@@ -17,6 +17,11 @@
         rel="stylesheet">
     <title>init() IT Association</title>
     <style>
+        html {
+            color-scheme: dark;
+            /* or use 'dark' if you want your website to always be dark themed */
+        }
+
         nav,
         h1 {
             font-family: "Kode Mono", monospace;
@@ -309,7 +314,7 @@
             } else {
                 document.getElementById("typewriter").textContent = currentWord.substring(0, j + 1);
                 if (j == currentWord.length) {
-                    
+
                     typingDone = true; // Mark typing as complete when the word is fully typed
                     showElementsAfterTyping(); // Call this function to fade in elements
                 }
