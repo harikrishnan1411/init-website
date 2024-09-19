@@ -154,13 +154,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Disable light mode entirely */
-@media (prefers-color-scheme: light) {
-  html {
-    color-scheme: dark; /* Force dark mode */
-  }
-}
 
+        /* Disable light mode entirely */
+        @media (prefers-color-scheme: light) {
+            html {
+                color-scheme: dark;
+                /* Force dark mode */
+            }
+        }
     </style>
 </head>
 
@@ -214,7 +215,7 @@
                 <div class="absolute inset-0 bg-black opacity-50"></div>
                 <div class="relative z-10 flex items-center justify-center h-full px-4 py-32 lg:px-8">
                     <div class="text-center" id="txt">
-                        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+                        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-white "
                             id="typewriter">
                             <span class="sm:block"></span>
                         </h1>

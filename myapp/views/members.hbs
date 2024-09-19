@@ -15,21 +15,25 @@
     <title>Our Team - init() IT Association</title>
     <style>
         @media (prefers-color-scheme: light) {
-  html {
-    color-scheme: dark; /* Force dark mode */
-  }
-}
-         html {
+            html {
+                color-scheme: dark;
+                /* Force dark mode */
+            }
+        }
+
+        html {
             color-scheme: dark;
             /* or use 'dark' if you want your website to always be dark themed */
         }
+
         nav,
         {
-            font-family: "Kode Mono", monospace;
-            font-optical-sizing: auto;
-            font-weight: <weight>;
-            font-style: normal;
+        font-family: "Kode Mono", monospace;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
         }
+
         main {
             display: flex;
             align-items: center;
@@ -49,7 +53,7 @@
             /* Aligns with the right side of the viewport */
             height: 100vh;
             /* Ensures it takes the full height of the viewport */
-            width:100%;
+            width: 100%;
             /* Adjust the width as needed */
             padding: 0;
             /* Remove any default padding */
@@ -383,7 +387,7 @@
         </div>
     </nav>
 
-    <section class="bg-white dark:bg-gray-900 mt-8 fade-in">
+    <section class="bg-gray-900 mt-8 fade-in">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our team</h2>
@@ -431,12 +435,13 @@
             </div>
         </div>
     </section>
-    <section class="bg-white dark:bg-gray-900 mt-8 fade-in">
+    <section class="bg-gray-900 mt-8 fade-in">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Past Members</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-                    Our past members have played a crucial role in shaping our organization.</p></p>
+                    Our past members have played a crucial role in shaping our organization.</p>
+                </p>
             </div>
             <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {{#each members}}
@@ -502,7 +507,7 @@
             document.getElementById('mobileNav').classList.remove('active');
         });
 
-         const fadeIns = document.querySelectorAll('.fade-in');
+        const fadeIns = document.querySelectorAll('.fade-in');
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
