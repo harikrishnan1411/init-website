@@ -19,7 +19,7 @@
             color-scheme: dark;
             /* or use 'dark' if you want your website to always be dark themed */
         }
-         nav,
+        nav
         {
             font-family: "Kode Mono", monospace;
             font-optical-sizing: auto;
@@ -50,6 +50,9 @@
         }
 
         /* Mobile Nav */
+        
+
+        /* Ensure mobile nav links are styled and visible */
         #mobileNav {
             transform: translateX(100%);
             /* Start off-screen to the right */
@@ -73,6 +76,11 @@
             align-items: center;
             font-size: 1.5rem;
             z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            top: 0;
+            /* Ensure it is aligned with the top */
+            left: 0;
         }
 
         #mobileNav a:hover {
