@@ -139,53 +139,135 @@
         }
 
         /* Completed event specific styling */
-        .completed-event .banner-image {
+        .completed-event .card-image {
             filter: blur(4px);
         }
 
-        /* Show state for fade-in */
-        .show {
-            opacity: 1;
-            transform: translateY(0);
+        .card {
+            width: 350px;
+            background: rgba(15, 15, 15, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(11, 0, 65, 0.3);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
-        /* Responsive banner image */
-        .banner-image {
+        .card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .card-image {
             background-position: center;
             background-size: cover;
             height: 200px;
             width: 100%;
-            border-radius: 8px;
+            
             border: 1px solid rgba(255, 255, 255, 0.255);
         }
 
-        /* Buttons */
-        .button-wrapper {
-            margin-top: 20px;
+        .card:hover .card-image {
+            transform: scale(1.1);
+            filter: brightness(1.2) contrast(1.2);
         }
 
-        .btn {
-            border: none;
-            padding: 10px 20px;
+        .card-content {
+            padding: 25px;
+            position: relative;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #ddd;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-languages {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .language-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
-            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .language-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .language-tag i {
+            font-size: 16px;
+        }
+
+        .html-tag {
+            color: #E44D26;
+        }
+
+        .css-tag {
+            color: #264DE4;
+        }
+
+        .js-tag {
+            color: #F0DB4F;
+        }
+
+        .card-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #111;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn.outline {
-            background: transparent;
-            color: rgba(0, 212, 255, 0.9);
-            border: 1px solid rgba(0, 212, 255, 0.6);
-            transition: all .3s ease;
+        .card-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.4);
         }
 
-        .btn.outline:hover {
-            transform: scale(1.125);
-            color: rgba(255, 255, 255, 0.9);
-            border-color: rgba(255, 255, 255, 0.9);
-            transition: all .3s ease;
+        .card-link::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .card-link:hover::before {
+            left: 100%;
         }
 
         /* Mobile Navigation Styles */
@@ -260,278 +342,290 @@
             animation: spin 1s linear infinite;
         }
 
-        
-/*Start Animations*/
-@-webkit-keyframes animatetop {
-	from {
-		top: -300px;
-		opacity: 0;
-	}
-	to {
-		top: 0;
-		opacity: 1;
-	}
-}
-@keyframes animatetop {
-	from {
-		top: -300px;
-		opacity: 0;
-	}
-	to {
-		top: 0;
-		opacity: 1;
-	}
-}
-@-webkit-keyframes zoomIn {
-	0% {
-		opacity: 0;
-		-webkit-transform: scale3d(0.3, 0.3, 0.3);
-		transform: scale3d(0.3, 0.3, 0.3);
-	}
-	50% {
-		opacity: 1;
-	}
-}
-@keyframes zoomIn {
-	0% {
-		opacity: 0;
-		-webkit-transform: scale3d(0.3, 0.3, 0.3);
-		transform: scale3d(0.3, 0.3, 0.3);
-	}
-	50% {
-		opacity: 1;
-	}
-}
-/*End Animations*/
-/*
+
+        /*Start Animations*/
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes zoomIn {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /*End Animations*/
+        /*
 -- Start BackGround Animation 
 */
-.area {
-	background: #191723;
-	background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
-	width: 100%;
-	height: auto;
-	position: absolute;
-	z-index: -1;
-}
+        .area {
+            background: #191723;
+            background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+            width: 100%;
+            height: auto;
+            position: absolute;
+            z-index: -1;
+        }
 
-.circles {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-.circles li {
-	position: absolute;
-	display: block;
-	list-style: none;
-	width: 20px;
-	height: 20px;
-	background: rgba(255, 255, 255, 0.2);
-	animation: animate 25s linear infinite;
-	bottom: -150px;
-}
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+        }
 
-.circles li:nth-child(1) {
-	left: 25%;
-	width: 80px;
-	height: 80px;
-	animation-delay: 0s;
-}
+        .circles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
 
-.circles li:nth-child(2) {
-	left: 10%;
-	width: 20px;
-	height: 20px;
-	animation-delay: 2s;
-	animation-duration: 12s;
-}
+        .circles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
 
-.circles li:nth-child(3) {
-	left: 70%;
-	width: 20px;
-	height: 20px;
-	animation-delay: 4s;
-}
+        .circles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
 
-.circles li:nth-child(4) {
-	left: 40%;
-	width: 60px;
-	height: 60px;
-	animation-delay: 0s;
-	animation-duration: 18s;
-}
+        .circles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
 
-.circles li:nth-child(5) {
-	left: 65%;
-	width: 20px;
-	height: 20px;
-	animation-delay: 0s;
-}
+        .circles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
 
-.circles li:nth-child(6) {
-	left: 75%;
-	width: 110px;
-	height: 110px;
-	animation-delay: 3s;
-}
+        .circles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
 
-.circles li:nth-child(7) {
-	left: 35%;
-	width: 150px;
-	height: 150px;
-	animation-delay: 7s;
-}
+        .circles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
 
-.circles li:nth-child(8) {
-	left: 50%;
-	width: 25px;
-	height: 25px;
-	animation-delay: 15s;
-	animation-duration: 45s;
-}
+        .circles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
 
-.circles li:nth-child(9) {
-	left: 20%;
-	width: 15px;
-	height: 15px;
-	animation-delay: 2s;
-	animation-duration: 35s;
-}
+        .circles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
 
-.circles li:nth-child(10) {
-	left: 85%;
-	width: 150px;
-	height: 150px;
-	animation-delay: 0s;
-	animation-duration: 11s;
-}
+        .circles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
 
-@keyframes animate {
-	0% {
-		transform: translateY(0) rotate(0deg);
-		opacity: 1;
-		border-radius: 0;
-	}
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
 
-	100% {
-		transform: translateY(-1000px) rotate(720deg);
-		opacity: 0;
-		border-radius: 50%;
-	}
-}
-/*
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /*
 -- End BackGround Animation 
 */
     </style>
 </head>
 
 <body class="bg-gray-900">
-    
-        <div id="spinner" class="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
-            <div class="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin"></div>
+
+    <div id="spinner" class="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+        <div class="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin"></div>
+    </div>
+    <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
+        <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
+            <div class="lg:w-1/2">
+                <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
+                    <img src="/images/logo.jpg" alt="Company Logo" class="h-12 object-contain">
+                </a>
+            </div>
+
+            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
+                id="navItems">
+                <a href="/events" class="group">
+                    EVENTS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/members" class="group">
+                    MEMBERS
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/contactus" class="group">
+                    CONTACT
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/about" class="group">
+                    ABOUT US
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+            </div>
+            <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
-            <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
-                <div class="lg:w-1/2">
-                    <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
-                        <img src="/images/logo.jpg" alt="Company Logo" class="h-12 object-contain">
-                    </a>
-                </div>
+        <div id="mobileNav">
+            <button id="closeMobileNav">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="/events">EVENTS</a>
+            <a href="/members">MEMBERS</a>
+            <a href="/contactus">CONTACT</a>
+            <a href="/about">ABOUT US</a>
+        </div>
 
-                <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
-                    id="navItems">
-                    <a href="/events" class="group">
-                        EVENTS
-                        <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                    </a>
-                    <a href="/members" class="group">
-                        MEMBERS
-                        <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                    </a>
-                    <a href="/contactus" class="group">
-                        CONTACT
-                        <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                    </a>
-                    <a href="/about" class="group">
-                        ABOUT US
-                        <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
-                    </a>
-                </div>
-                <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            <div id="mobileNav">
-                <button id="closeMobileNav">
-                    <i class="fas fa-times"></i>
-                </button>
-                <a href="/events">EVENTS</a>
-                <a href="/members">MEMBERS</a>
-                <a href="/contactus">CONTACT</a>
-                <a href="/about">ABOUT US</a>
-            </div>
+    </nav>
+    <div class="area"></div>
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="events-container">
+        <!-- Upcoming Events Section -->
 
-        </nav>
-<div class="area"></div>
-        <ul class="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <div class="events-container">
-            <!-- Upcoming Events Section -->
-            <div id="upcomingEvents" class="event-section">
-                <h2 class="section-title">Upcoming Events</h2>
-                <div class="event-grid">
-                    {{#each events}}
-                    {{#unless this.completed}} <!-- Show only upcoming events -->
-                    <div class="container fade-in">
-                        <div class="wrapper">
-                            <div class="banner-image" style="background-image: url('/image/{{this._id}}');"> </div>
-                            <h1>{{this.title}}</h1>
-                            <p>{{this.description}}</p>
-                        </div>
-                        <div class="button-wrapper">
-                            <a href="/events/{{this._id}}" class="btn outline">DETAILS</a>
-                        </div>
+        <div id="upcomingEvents" class="event-section">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="event-grid">
+                {{#each events}}
+                {{#unless this.completed}} <!-- Show only upcoming events -->
+                <div class="card animate__animated animate__fadeInUp fade-in">
+                    <div style="background-image: url('/image/{{this._id}}');" alt="Project Cover" class="card-image">
                     </div>
-                    {{/unless}}
-                    {{/each}}
-                </div>
-            </div>
-
-            <!-- Completed Events Section -->
-            <div id="completedEvents" class="event-section">
-                <h2 class="section-title">Completed Events</h2>
-                <div class="event-grid">
-                    {{#each events}}
-                    {{#if this.completed}} <!-- Show only completed events -->
-                    <div class="container completed-event fade-in">
-                        <div class="wrapper">
-                            <div class="banner-image" style="background-image: url('/image/{{this._id}}');"> </div>
-                            <h1>{{this.title}}</h1>
-                            <p>{{this.description}}</p>
-                        </div>
-                        <div class="button-wrapper">
-                            <a href="/events/{{this._id}}" class="btn outline">DETAILS</a>
-                        </div>
+                    <div class="card-content">
+                        <h2 class="card-title animate__animated animate__fadeInDown">{{this.title}}</h2>
+                        <p class="card-description animate__animated animate__fadeIn">{{this.description}}</p>
+                        <a href="/events/{{this._id}}" class="card-link">
+                            View Details
+                        </a>
                     </div>
-                    {{/if}}
-                    {{/each}}
                 </div>
+                {{/unless}}
+                {{/each}}
             </div>
         </div>
+
+        <!-- Completed Events Section -->
+        <div id="completedEvents" class="event-section">
+            <h2 class="section-title">Completed Events</h2>
+            <div class="event-grid">
+                {{#each events}}
+                {{#if this.completed}} <!-- Show only completed events -->
+                <div class="card animate__animated animate__fadeInUp completed-event fade-in">
+                    <div style="background-image: url('/image/{{this._id}}');" alt="Project Cover" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title animate__animated animate__fadeInDown">{{this.title}}</h2>
+                        <p class="card-description animate__animated animate__fadeIn">{{this.description}}</p>
+                        <a href="/events/{{this._id}}" class="card-link">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
     </div>
 
 
