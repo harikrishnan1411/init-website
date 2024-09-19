@@ -26,7 +26,7 @@
             /* or use 'dark' if you want your website to always be dark themed */
         }
 
-        
+
 
         main {
             display: flex;
@@ -35,12 +35,12 @@
             margin-top: 20px;
             font-family: 'Poppins', sans-serif;
         }
-        nav
-        {
-        font-family: "Kode Mono", monospace;
-        font-optical-sizing: auto;
-        font-weight: <weight>;
-        font-style: normal;
+
+        nav {
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
         }
 
         /* Ensure mobile nav links are styled and visible */
@@ -82,8 +82,8 @@
             z-index: 60;
         }
 
-        
-        
+
+
 
         /* Mobile Nav active state */
         #mobileNav.active {
@@ -336,6 +336,20 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
@@ -343,6 +357,9 @@
 </head>
 
 <body class="bg-gray-900">
+    <div id="spinner" class="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+        <div class="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin"></div>
+    </div>
 
     <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
         <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
@@ -405,8 +422,7 @@
                     <p>{{this.designation}}</p>
                     <ul class="flex justify-center mt-4 space-x-4">
                         <li>
-                            <a href="{{this.instagramLink}}"
-                                class="text-[#E4405F] hover:hover:text-white">
+                            <a href="{{this.instagramLink}}" class="text-[#E4405F] hover:hover:text-white">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.325 3.608 1.3.975.975 1.237 2.242 1.299 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.325 2.633-1.3 3.608-.975.975-2.242 1.237-3.608 1.299-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.325-3.608-1.3-.975-.975-1.237-2.242-1.299-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.849c.062-1.366.325-2.633 1.3-3.608.975-.975 2.242-1.237 3.608-1.299 1.265-.058 1.645-.07 4.849-.07zm0-2.163C8.755 0 8.343.013 7.052.072 5.748.131 4.472.392 3.419 1.445 2.366 2.498 2.105 3.774 2.046 5.078c-.059 1.291-.072 1.703-.072 5.051s.013 3.759.072 5.051c.059 1.291.32 2.567 1.373 3.62 1.053 1.053 2.329 1.314 3.62 1.373 1.291.059 1.703.072 5.051.072s3.759-.013 5.051-.072c1.291-.059 2.567-.32 3.62-1.373 1.053-1.053 1.314-2.329 1.373-3.62.059-1.291.072-1.703.072-5.051s-.013-3.759-.072-5.051c-.059-1.291-.32-2.567-1.373-3.62C19.528.392 18.252.131 16.948.072 15.657.013 15.245 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"
@@ -416,8 +432,7 @@
                         </li>
 
                         <li>
-                            <a href="{{this.linkedinLink}}"
-                                class="text-[#0A66C2] hover:hover:text-white">
+                            <a href="{{this.linkedinLink}}" class="text-[#0A66C2] hover:hover:text-white">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M19.252 3C20.747 3 22 4.224 22 5.76V18.24C22 19.776 20.747 21 19.252 21H4.748C3.253 21 2 19.776 2 18.24V5.76C2 4.224 3.253 3 4.748 3h14.504zM7.052 9.167h-2.5V18h2.5V9.167zM5.802 8.163c-.858 0-1.547-.698-1.547-1.563 0-.864.689-1.563 1.547-1.563.859 0 1.548.698 1.548 1.563 0 .865-.689 1.563-1.548 1.563zm10.5 9.833h-2.5v-3.959c0-.99-.02-2.268-1.38-2.268-1.382 0-1.593 1.083-1.593 2.201v4.026h-2.5V9.167h2.4v1.205h.034c.334-.63 1.149-1.295 2.368-1.295 2.535 0 3.005 1.668 3.005 3.835V18h-.038z"
@@ -454,8 +469,7 @@
                     <p>{{this.designation}}</p>
                     <ul class="flex justify-center mt-4 space-x-4">
                         <li>
-                            <a href="{{this.instagramLink}}"
-                                class="text-[#E4405F] hover:hover:text-white">
+                            <a href="{{this.instagramLink}}" class="text-[#E4405F] hover:hover:text-white">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.325 3.608 1.3.975.975 1.237 2.242 1.299 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.325 2.633-1.3 3.608-.975.975-2.242 1.237-3.608 1.299-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.325-3.608-1.3-.975-.975-1.237-2.242-1.299-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.849c.062-1.366.325-2.633 1.3-3.608.975-.975 2.242-1.237 3.608-1.299 1.265-.058 1.645-.07 4.849-.07zm0-2.163C8.755 0 8.343.013 7.052.072 5.748.131 4.472.392 3.419 1.445 2.366 2.498 2.105 3.774 2.046 5.078c-.059 1.291-.072 1.703-.072 5.051s.013 3.759.072 5.051c.059 1.291.32 2.567 1.373 3.62 1.053 1.053 2.329 1.314 3.62 1.373 1.291.059 1.703.072 5.051.072s3.759-.013 5.051-.072c1.291-.059 2.567-.32 3.62-1.373 1.053-1.053 1.314-2.329 1.373-3.62.059-1.291.072-1.703.072-5.051s-.013-3.759-.072-5.051c-.059-1.291-.32-2.567-1.373-3.62C19.528.392 18.252.131 16.948.072 15.657.013 15.245 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"
@@ -465,8 +479,7 @@
                         </li>
 
                         <li>
-                            <a href="{{this.linkedinLink}}"
-                                class="text-[#0A66C2] hover:hover:text-white">
+                            <a href="{{this.linkedinLink}}" class="text-[#0A66C2] hover:hover:text-white">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M19.252 3C20.747 3 22 4.224 22 5.76V18.24C22 19.776 20.747 21 19.252 21H4.748C3.253 21 2 19.776 2 18.24V5.76C2 4.224 3.253 3 4.748 3h14.504zM7.052 9.167h-2.5V18h2.5V9.167zM5.802 8.163c-.858 0-1.547-.698-1.547-1.563 0-.864.689-1.563 1.547-1.563.859 0 1.548.698 1.548 1.563 0 .865-.689 1.563-1.548 1.563zm10.5 9.833h-2.5v-3.959c0-.99-.02-2.268-1.38-2.268-1.382 0-1.593 1.083-1.593 2.201v4.026h-2.5V9.167h2.4v1.205h.034c.334-.63 1.149-1.295 2.368-1.295 2.535 0 3.005 1.668 3.005 3.835V18h-.038z"
@@ -486,39 +499,45 @@
 
 
     <script>
-        // Handle navbar background color change on scroll
-        const navbar = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        
+  window.addEventListener('load', () => {
+                document.getElementById('spinner').style.display = 'none';
+  });
+   
 
-        // Handle hamburger menu toggle
-        // Handle hamburger menu toggle
-        document.getElementById('hamburger').addEventListener('click', function () {
-            document.getElementById('mobileNav').classList.add('active');
-        });
+    // Handle navbar background color change on scroll
+    const navbar = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+    } else {
+    navbar.classList.remove('scrolled');
+    }
+    });
 
-        document.getElementById('closeMobileNav').addEventListener('click', function () {
-            document.getElementById('mobileNav').classList.remove('active');
-        });
+    // Handle hamburger menu toggle
+    // Handle hamburger menu toggle
+    document.getElementById('hamburger').addEventListener('click', function () {
+    document.getElementById('mobileNav').classList.add('active');
+    });
 
-        const fadeIns = document.querySelectorAll('.fade-in');
+    document.getElementById('closeMobileNav').addEventListener('click', function () {
+    document.getElementById('mobileNav').classList.remove('active');
+    });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
+    const fadeIns = document.querySelectorAll('.fade-in');
 
-        fadeIns.forEach(fadeIn => {
-            observer.observe(fadeIn);
-        });
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+    if (entry.isIntersecting) {
+    entry.target.classList.add('visible');
+    }
+    });
+    });
+
+    fadeIns.forEach(fadeIn => {
+    observer.observe(fadeIn);
+    });
 
     </script>
 </body>
