@@ -154,6 +154,13 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Disable light mode entirely */
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: dark; /* Force dark mode */
+  }
+}
+
     </style>
 </head>
 
