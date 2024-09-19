@@ -79,15 +79,15 @@ router.post('/forgotPassword', async (req, res) => {
     await admin.save(); // Save OTP to admin's record
 
     // Get email credentials from environment variables
-    const email = process.env.EMAIL;
-    const password = process.env.PASSWORD;
+    const nodeEmail = process.env.EMAIL;
+    const nodePass = process.env.PASSWORD;
 
     // Setup email transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'testingpurposes240@gmail.com',
-        pass: 'bryk qwyx xuer etmj',
+        user: nodeEmail,
+        pass: nodePass,
       }
     });
 
