@@ -88,7 +88,7 @@
         }
 
         nav.scrolled {
-            background-color: rgba(0, 0, 0, 1);
+            background-color: rgba(0, 0, 0, 0.8);
             transition: background-color 0.3s ease;
         }
 
@@ -217,12 +217,12 @@
                         <h1 class="mb-4 text-3xl sm:text-4xl md:text-5xl tracking-tight font-extrabold text-center text-white"
                             id="typewriter"> <span class="sm:block"></span>
                         </h1>
-                        <p class="mx-auto mt-4 max-w-2xl sm:text-xl fade-in-empowering" id="empowering-text">
+                        <p class="mx-auto mt-4 max-w-2xl sm:text-l fade-in-empowering" id="empowering-text">
                             Empowering IT professionals and enthusiasts through knowledge sharing, events, and
                             networking.
                         </p>
                         <div class="mt-8 flex flex-wrap justify-center gap-4 fade-in-empowering" id="dive-button">
-                            <a class="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded shadow"
+                            <a class="bg-green-500 text-white lg:text-xl sm:text-l font-medium px-3 py-1 rounded shadow"
                                 href="#next">
                                 Dive In!
                             </a>
@@ -236,11 +236,11 @@
 
 
         <div class="relative">
-            <div class="sticky top-0 h-screen flex flex-col items-center justify-center bg-gray-800 to-blue-200"
+            <div class="sticky top-0 min-h-screen flex flex-col items-center justify-center bg-gray-800 to-blue-200"
                 id="next">
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap h-full">
                     <div class="w-full sm:w-8/12 mb-10">
-                        <div class="container mx-auto h-full sm:p-10">
+                        <div class="container mx-auto h-full sm:p-10 flex flex-col justify-center">
                             <nav class="flex px-4 justify-between items-center">
                                 <div class="lg:text-4xl text-2xl font-bold">
                                     Workshops & Seminars<span class="text-green-700">.</span>
@@ -254,27 +254,29 @@
                                     <h1 class="text-3xl lg:text-4xl font-bold">Elevate Your <span
                                             class="text-green-700">Skills</span> with Our Workshops</h1>
                                     <div class="w-20 h-2 bg-green-700 my-4"></div>
-                                    <p class="text-xl mb-10">Participate in our workshops and seminars to
+                                    <p class="sm:text-l lg:text-xl mb-10">Participate in our workshops and seminars to
                                         stay ahead in the IT world. Dive into the latest trends and technologies to
                                         enhance your expertise and career.</p>
                                     <a href="/events"
-                                        class="bg-green-500 text-white lg:text-2xl text-xl font-medium px-4 py-2 rounded shadow">Discover
+                                        class="bg-green-500 text-white sm:text-l lg:text-xl font-medium px-4 py-2 rounded shadow">Discover
                                         Workshops</a>
                                 </div>
                             </header>
                         </div>
                     </div>
-                    <img src="/images/workshop.jpeg" alt="Leafs" class="w-full h-48 object-cover sm:h-screen sm:w-4/12">
+                    <img src="/images/workshop.jpeg" alt="Leafs"
+                        class="w-full h-full object-cover sm:h-screen sm:w-4/12">
                 </div>
             </div>
-            <div class="sticky top-0 h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
-                <div class="flex flex-wrap">
+            <br>
+            <div class="sticky top-0 min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+                <div class="flex flex-wrap h-full">
                     <img src="/images/networking.jpg" alt="Leafs"
-                        class="w-full h-48 object-cover sm:h-screen sm:w-4/12">
+                        class="w-full h-auto object-cover sm:h-screen sm:w-4/12 lg:mt-0 sm:mt-10">
                     <div class="w-full sm:w-8/12 mb-10">
-                        <div class="container mx-auto h-full sm:p-10">
+                        <div class="container mx-auto h-full sm:p-10 flex flex-col justify-center">
                             <nav class="flex px-4 justify-between items-center">
-                                <div class="lg:text-4xl text-2xl font-bold">
+                                <div class="lg:text-4xl text-2xl font-bold sm:mt-10 lg:mt-0">
                                     Networking Events<span class="text-green-700">.</span>
                                 </div>
                                 <div>
@@ -286,23 +288,22 @@
                                     <h1 class="text-3xl lg:text-4xl font-bold">Connect at Our <span
                                             class="text-green-700">Networking Events</span></h1>
                                     <div class="w-20 h-2 bg-green-700 my-4"></div>
-                                    <p class="text-xl mb-10">Join our networking events to meet IT professionals
-                                        across various sectors. Forge valuable connections and collaborate on
-                                        exciting projects.</p>
+                                    <p class="sm:text-l lg:text-xl mb-10">Join our networking events to meet IT
+                                        professionals across various sectors. Forge valuable connections and collaborate
+                                        on exciting projects.</p>
                                     <a href="/events"
-                                        class="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded shadow">Explore
+                                        class="bg-green-500 text-white lg:text-2xl sm:text-l lg:text-xl font-medium px-4 py-2 rounded shadow">Explore
                                         Events</a>
                                 </div>
                             </header>
                         </div>
                     </div>
-
                 </div>
             </div>
-            <div class="sticky top-0 h-screen flex flex-col items-center justify-center bg-gray-800 text-white">
-                <div class="flex flex-wrap">
+            <div class="sticky top-0 min-h-screen flex flex-col items-center justify-center bg-gray-800 text-white">
+                <div class="flex flex-wrap h-full">
                     <div class="w-full sm:w-8/12 mb-10">
-                        <div class="container mx-auto h-full sm:p-10">
+                        <div class="container mx-auto h-full sm:p-10 flex flex-col justify-center">
                             <nav class="flex px-4 justify-between items-center">
                                 <div class="lg:text-4xl text-2xl font-bold">
                                     Competitions<span class="text-green-700">.</span>
@@ -316,21 +317,22 @@
                                     <h1 class="text-3xl lg:text-4xl font-bold">Showcase Your <span
                                             class="text-green-700">Talent</span> in Competitions</h1>
                                     <div class="w-20 h-2 bg-green-700 my-4"></div>
-                                    <p class="text-xl mb-10">Participate in thrilling competitions that challenge
-                                        your skills and creativity. From hackathons to coding contests, prove your
-                                        prowess and earn recognition.</p>
+                                    <p class="sm:text-l lg:text-xl mb-10">Participate in thrilling competitions that
+                                        challenge your skills and creativity. From hackathons to coding contests, prove
+                                        your prowess and earn recognition.</p>
                                     <a href="/events"
-                                        class="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded shadow">Join
+                                        class="bg-green-500 text-white lg:text-2xl sm:text-l lg:text-xl font-medium px-4 py-2 rounded shadow">Join
                                         Competitions</a>
                                 </div>
                             </header>
                         </div>
                     </div>
                     <img src="/images/competitions.jpg" alt="Leafs"
-                        class="w-full h-48 object-cover sm:h-screen sm:w-4/12">
+                        class="w-full h-full object-cover sm:h-screen sm:w-4/12">
                 </div>
             </div>
         </div>
+
 
         <div class=" bg-gray-900 pt-9 ">
             <div class="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
@@ -418,29 +420,30 @@
                             </ul>
                         </div>
                         <div class="mt-6 flex flex-col gap-4 sm:mt-0">
-                        <p class="text-deutziawhite font-inter text-[18px] font-medium">Follow Us On</p>
-                        <div class="flex gap-4 sm:flex-col">
-                            <a href="https://www.instagram.com/init_society/"
-                                class="text-white hover:text-gray-400">Instagram <i class="fab fa-instagram"></i></a>
-                            <a href="https://www.linkedin.com/company/init-association/posts/?feedView=all"
-                                class="text-white hover:text-gray-400">LinkedIn <i class="fab fa-linkedin"></i></a>
+                            <p class="text-deutziawhite font-inter text-[18px] font-medium">Follow Us On</p>
+                            <div class="flex gap-4 sm:flex-col">
+                                <a href="https://www.instagram.com/init_society/"
+                                    class="text-white hover:text-gray-400">Instagram <i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/company/init-association/posts/?feedView=all"
+                                    class="text-white hover:text-gray-400">LinkedIn <i class="fab fa-linkedin"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr class="mt-[30px] text-white" />
-            <div class="flex items-center justify-center pb-8 pt-[9px] md:py-8">
-                <p class="text-[10px] font-normal text-white md:text-[12px]">
-                    © Copyright
-                    <!-- -->2024
-                    <!-- -->, All Rights Reserved by init() IT Association |
+                <hr class="mt-[30px] text-white" />
+                <div class="flex items-center justify-center pb-8 pt-[9px] md:py-8">
+                    <p class="text-[10px] font-normal text-white md:text-[12px]">
+                        © Copyright
+                        <!-- -->2024
+                        <!-- -->, All Rights Reserved by init() IT Association |
 
-                    This website was made by T S Harikrishnan <a
-                        href="https://www.linkedin.com/in/t-s-harikrishnan-123497224/"
-                        class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
-                </p>
+                        This website was made by T S Harikrishnan <a
+                            href="https://www.linkedin.com/in/t-s-harikrishnan-123497224/"
+                            class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
+                    </p>
+                </div>
             </div>
-        </div>
         </div>
     </main>
 
