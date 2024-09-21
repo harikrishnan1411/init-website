@@ -734,6 +734,30 @@ video {
   margin-left: 5rem;
 }
 
+.mt-\[-\] {
+  margin-top: -;
+}
+
+.mt-\[-10\] {
+  margin-top: -10;
+}
+
+.mt-\[-20\] {
+  margin-top: -20;
+}
+
+.mt-\[-20px\] {
+  margin-top: -20px;
+}
+
+.mt-\[-40px\] {
+  margin-top: -40px;
+}
+
+.mt-\[-0px\] {
+  margin-top: -0px;
+}
+
 .block {
   display: block;
 }
@@ -1819,6 +1843,11 @@ video {
   .lg\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 
