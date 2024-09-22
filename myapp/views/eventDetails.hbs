@@ -14,15 +14,19 @@
     <title>Init-IT Association</title>
     <style>
         @media (prefers-color-scheme: light) {
-  html {
-    color-scheme: dark; /* Force dark mode */
-  }
-}
+            html {
+                color-scheme: dark;
+                /* Force dark mode */
+            }
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Slab:wght@400;700&display=swap');
-         html {
+
+        html {
             color-scheme: dark;
             /* or use 'dark' if you want your website to always be dark themed */
         }
+
         nav {
             font-family: "Kode Mono", monospace;
             font-optical-sizing: auto;
@@ -37,7 +41,7 @@
         }
 
         /* Mobile Nav */
-       
+
 
         /* Ensure mobile nav links are styled and visible */
         #mobileNav {
@@ -78,7 +82,7 @@
             transform: translateX(0);
         }
 
-    
+
         /* Mobile Nav active state */
         #mobileNav.active {
             transform: translateX(0);
@@ -98,17 +102,6 @@
         }
 
         /* Event Details Section */
-        .
-
-        /* Event Title Styling */
-        /* Event Details Section */
-        .event-details {
-            padding: 80px 20px;
-            background-color: #f7fafc;
-            padding-top: 140px;
-            /* Adjust this to be equal or greater than the navbar height */
-            margin-top: 0;
-        }
 
         /* Event Image Styling */
         .event-image {
@@ -127,18 +120,28 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
+            margin-left: 10px;
             text-transform: uppercase;
-            color: #2d3748;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
             margin-top: 15px;
         }
 
         /* Event Info */
         .event-info {
+             margin-left: 10px;
             margin-bottom: 30px;
-            color: #4a5568;
+            color: #d4d4d4;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
         }
 
         .event-info p {
+             margin-left: 10px;
             font-size: 1.2rem;
             line-height: 1.8;
             margin: 10px 0;
@@ -146,35 +149,50 @@
 
         /* Coordinators List */
         .event-coordinators p {
+             margin-left: 10px;
             font-size: 1.2rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #e6e6e6;
             margin-bottom: 10px;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
         }
 
         .event-coordinators ul {
+             margin-left: 10px;
             list-style-type: disc;
             padding-left: 20px;
         }
 
         .event-coordinators li {
+             margin-left: 10px;
             font-size: 1.1rem;
-            color: #4a5568;
+            color: #dedede;
             margin: 5px 0;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
         }
 
         /* Button Styling */
         .btn {
+            margin-left: 10px;
             display: inline-block;
             padding: 15px 30px;
             font-size: 1rem;
-            font-weight: 600;
             text-transform: uppercase;
             color: white;
             background-color: #3182ce;
             border-radius: 30px;
             transition: background-color 0.3s ease;
             text-align: center;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
         }
 
         .btn:hover {
@@ -225,7 +243,10 @@
     <br>
     <section>
         <div class="event-details max-w-screen-lg mx-auto mt-12">
-            <div class="event-image" style="background-image: url('/image/{{event._id}}');"></div>
+
+            <div class="bg-cover bg-center h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[28rem] transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110 rounded-lg"
+                style="background-image: url('/image/{{event._id}}');"></div>
+
             <h1>{{event.title}}</h1>
             <div class="event-info">
                 <p><em>{{event.tagline}}</em></p>
