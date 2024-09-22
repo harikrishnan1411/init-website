@@ -46,7 +46,6 @@
             height: 1000px;
         }
 
-
         .btn-primary {
             background-color: #343a40;
             border-color: #343a40;
@@ -56,7 +55,6 @@
             background-color: #575757;
             border-color: #575757;
         }
-
 
         @media screen and (max-width: 700px) {
             .sidebar {
@@ -80,23 +78,56 @@
                 float: none;
             }
         }
+
         .card-body.bg-dark {
-    background-color: #1a1a1a; /* Dark background for cards */
-}
-.btn-outline-light {
-    border-color: #f8f9fa; /* Light outline for buttons */
-    color: #f8f9fa; /* Button text color */
-}
-.btn-outline-light:hover {
-    background-color: #f8f9fa;
-    color: #212529; /* Dark text on hover */
-}
-.text-muted {
-    color: #6c757d !important; /* Muted gray text */
-}
-.text-light {
-    color: #f8f9fa !important; /* Light text */
-}
+            background-color: #1a1a1a;
+        }
+
+        .btn-outline-light {
+            border-color: #f8f9fa;
+            color: #f8f9fa;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+        .text-light {
+            color: #f8f9fa !important;
+        }
+
+        .container {
+            overflow: hidden;
+        }
+
+        .card {
+            height: 100%;
+        }
+
+        .card-body {
+            flex: 1 1 auto;
+        }
+
+        .row {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Fix for cards breaking out of container */
+        .row-cols-1 {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
 
     </style>
 </head>
@@ -112,27 +143,30 @@
             <a href="/admin/logout">Logout</a>
         </div>
 
-        <div class="container py-5">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                {{#each Messages}}
-                <div class="col">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body p-4 bg-dark text-white">
-                            <h6 class="text-muted mb-2">From:</h6>
-                            <h5 class="card-title text-light">{{email}}</h5>
-                            <hr class="text-muted">
-                            <p class="text-muted mb-1"><strong>Subject:</strong> {{subject}}</p>
-                            <p class="text-muted mb-3"><strong>Message:</strong> {{message}}</p>
-                        </div>
-                        <div class="card-footer bg-dark border-0 d-flex justify-content-between align-items-center">
-                            <small class="text-muted">Received on: {{date}}</small>
+        <div class="content">
+            <div class="container py-5">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> <!-- Removed gx-0 -->
+                    {{#each Messages}}
+                    <div class="col">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4 bg-dark text-white">
+                                <h6 class="text-muted mb-2">From:</h6>
+                                <h5 class="card-title text-light">{{email}}</h5>
+                                <hr class="text-muted">
+                                <p class="text-muted mb-1"><strong>Subject:</strong> {{subject}}</p>
+                                <p class="text-muted mb-3"><strong>Message:</strong> {{message}}</p>
+                            </div>
+                            <div class="card-footer bg-dark border-0 d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Received on: {{date}}</small>
+                            </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
-                {{/each}}
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

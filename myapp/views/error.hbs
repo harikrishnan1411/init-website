@@ -1,3 +1,23 @@
-<h1>{{message}}</h1>
+{{!-- <h1></h1>
 <h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<pre>{{error.stack}}</pre> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Error</title>
+</head>
+<body>
+    <div class="bg-gray-100 px-2 text-center"></div>
+    <div class="h-screen flex flex-col justify-center items-center">
+        <h1 class="text-8xl font-extrabold text-red-500">500</h1>
+        <p class="text-4xl font-medium text-gray-800">Internal Server Error - {{message}}</p>
+        <p class="text-xl text-gray-800 mt-4">We apologize for the inconvenience. Please try again later.</p>
+    </div>
+</div>
+</body>
+</html>
+
