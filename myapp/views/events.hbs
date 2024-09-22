@@ -165,7 +165,7 @@
             background-size: cover;
             height: 200px;
             width: 100%;
-            
+
             border: 1px solid rgba(255, 255, 255, 0.255);
         }
 
@@ -180,15 +180,20 @@
         }
 
         .card-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
             margin-bottom: 15px;
             color: #00ffff;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
 
         .card-description {
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
             font-size: 16px;
             color: #ddd;
             margin-bottom: 20px;
@@ -238,11 +243,14 @@
             display: inline-block;
             padding: 12px 24px;
             background: linear-gradient(45deg, #00ffff, #ff00ff);
-            color: #111;
+            color: #000000;
             text-decoration: none;
             border-radius: 25px;
             transition: all 0.3s ease;
-            font-weight: 700;
+            font-family: "Kode Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
@@ -585,7 +593,7 @@
 
         <div id="upcomingEvents" class="event-section">
             <h2 class="section-title">Upcoming Events</h2>
-            <div class="event-grid">
+            <div class="event-grid fade-in">
                 {{#each events}}
                 {{#unless this.completed}} <!-- Show only upcoming events -->
                 <div class="card animate__animated animate__fadeInUp fade-in">
@@ -632,8 +640,27 @@
     <script>
 
         window.addEventListener('load', () => {
+            // Keep the spinner visible for 2 seconds after the page has loaded
+
             document.getElementById('spinner').style.display = 'none';
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            fadeElements.forEach((el) => {
+                observer.observe(el);
+            });
+
         });
+
 
 
         // Navbar background change on scroll
@@ -663,20 +690,7 @@
 
 
         // Fade-in effect for event containers
-        const fadeElements = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
 
-        fadeElements.forEach((el) => {
-            observer.observe(el);
-        });
     </script>
 </body>
 
