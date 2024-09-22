@@ -395,9 +395,9 @@ router.get("/eventManagement/details/:id", authenticateToken, async (req, res) =
 });
 
 // Route to update an event
-router.post("/eventManagement/updateEvent", authenticateToken, upload.single("image"), async (req, res) => {
+router.post("/eventManagement/updateEvent/:id", authenticateToken, upload.single("image"), async (req, res) => {
   try {
-    const eventId = req.body.eventId; // Assuming event ID is sent in the form
+    const eventId = req.params.id; // Assuming event ID is sent in the form
     const updates = {};
 
     if (req.body.title) updates.title = req.body.title;
