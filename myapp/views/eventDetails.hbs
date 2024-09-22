@@ -117,8 +117,8 @@
 
         /* Event Title Styling */
         .event-details h1 {
-            font-size: 3rem;
-            font-weight: 700;
+            
+            
             margin-bottom: 20px;
             margin-left: 10px;
             text-transform: uppercase;
@@ -131,7 +131,7 @@
 
         /* Event Info */
         .event-info {
-             margin-left: 10px;
+            margin-left: 10px;
             margin-bottom: 30px;
             color: #d4d4d4;
             font-family: "Kode Mono", monospace;
@@ -141,7 +141,7 @@
         }
 
         .event-info p {
-             margin-left: 10px;
+            margin-left: 10px;
             font-size: 1.2rem;
             line-height: 1.8;
             margin: 10px 0;
@@ -149,7 +149,7 @@
 
         /* Coordinators List */
         .event-coordinators p {
-             margin-left: 10px;
+            margin-left: 10px;
             font-size: 1.2rem;
             font-weight: 600;
             color: #e6e6e6;
@@ -161,13 +161,13 @@
         }
 
         .event-coordinators ul {
-             margin-left: 10px;
+            margin-left: 10px;
             list-style-type: disc;
             padding-left: 20px;
         }
 
         .event-coordinators li {
-             margin-left: 10px;
+            margin-left: 10px;
             font-size: 1.1rem;
             color: #dedede;
             margin: 5px 0;
@@ -201,36 +201,85 @@
 
         section {
             margin-top: 20px;
+            z-index: 10;
         }
+
+        /*Start Animations*/
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes zoomIn {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /*End Animations*/
+        section{
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 
 <body class="bg-gray-900">
-
-    <nav class="w-full bg-transparent h-fit fixed top-0 left-0 z-50 mb-10">
+    <nav class="w-full bg-transparent h-fit fixed top-0 left-0 z-50 mb-20">
         <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
             <div class="lg:w-1/2">
                 <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
                     <img src="/images/logo.jpg" alt="Company Logo" class="h-12 object-contain">
                 </a>
             </div>
-            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
-                id="navItems">
-                <a href="/events" class="group">EVENTS<div
-                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
-                <a href="/members" class="group">MEMBERS<div
-                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
-                <a href="/contactus" class="group">CONTACT<div
-                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
-                <a href="/about" class="group">ABOUT US<div
-                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg" id="navItems">
+                <a href="/events" class="group">EVENTS<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/members" class="group">MEMBERS<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/contactus" class="group">CONTACT<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/about" class="group">ABOUT US<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
             </div>
             <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div id="mobileNav"
-            class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+        <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
             <button class="self-end text-2xl" id="closeMobileNav">
                 <i class="fas fa-times"></i>
             </button>
@@ -241,35 +290,40 @@
         </div>
     </nav>
     <br>
-    <section>
-        <div class="event-details max-w-screen-lg mx-auto mt-12">
-
-            <div class="bg-cover bg-center h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[28rem] transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110 rounded-lg"
-                style="background-image: url('/image/{{event._id}}');"></div>
-
-            <h1>{{event.title}}</h1>
-            <div class="event-info">
-                <p><em>{{event.tagline}}</em></p>
-                <p>{{event.description}}</p>
-                <p><strong>Venue:</strong> {{event.venue}}</p>
-                <p><strong>Date:</strong> {{event.date}}</p>
+    <main>
+        <section>
+            <div class="event-details max-w-screen-lg mx-auto mt-12 px-5 lg:flex lg:gap-8">
+                <div class="lg:w-1/2">
+                    <div class="w-full h-screen/2 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="/image/{{event._id}}" alt="Event Image" class="w-auto h-full object-contain object-center">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex flex-col justify-center">
+                    <h1 class="text-white text-4xl lg:text-5xl font-bold mt-4 lg:mt-0">{{event.title}}</h1>
+                    <div class="event-info text-white mt-2">
+                        <p><em>{{event.tagline}}</em></p>
+                        <p>{{event.description}}</p>
+                        <p><strong>Venue:</strong> {{event.venue}}</p>
+                        <p><strong>Date:</strong> {{event.date}}</p>
+                    </div>
+                    <div class="event-coordinators text-white mt-2">
+                        <p><strong>Coordinators:</strong></p>
+                        <ul>
+                            {{#each event.coordinators}}
+                            <li>{{this.name}} - {{this.number}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{#unless event.completed}}
+                    <a href="{{event.formLink}}" class="btn mt-8">Join</a>
+                    {{/unless}}
+                    {{#if event.completed}}
+                    <p class="text-red-500 mt-8">Event has ended</p>
+                    {{/if}}
+                </div>
             </div>
-            <div class="event-coordinators">
-                <p><strong>Coordinators:</strong></p>
-                <ul>
-                    {{#each event.coordinators}}
-                    <li>{{this.name}} - {{this.number}}</li>
-                    {{/each}}
-                </ul>
-            </div>
-            {{#unless event.completed}}
-            <a href="{{event.formLink}}" class="btn mt-8">Join</a>
-            {{/unless}}
-            {{#if event.completed}}
-            <p class="text-red-500 mt-8">Event has ended</p>
-            {{/if}}
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script>
         // Navbar background change on scroll
@@ -292,5 +346,6 @@
         });
     </script>
 </body>
+
 
 </html>
