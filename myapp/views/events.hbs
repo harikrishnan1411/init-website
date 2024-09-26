@@ -526,32 +526,16 @@
 -- End BackGround Animation 
 */
 
- /* Jump-in animation */
-        @keyframes jumpIn {
-            0% {
-                opacity: 0;
-                transform: translateY(100px) scale(0.5);
-            }
 
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Ensure jump animation on event cards */
-        .card.animate-jump {
-            animation: jumpIn 0.6s ease-out forwards;
-        }
 
     </style>
 </head>
 
 <body class="bg-gray-900">
 
-    {{!-- <div id="spinner" class="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+    <div id="spinner" class="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
         <div class="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin"></div>
-    </div> --}}
+    </div>
 
     <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
         <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
