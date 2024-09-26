@@ -216,6 +216,54 @@
                 /* Force dark mode */
             }
         }
+
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInFromLeft 1s ease-out forwards;
+        }
+
+        @keyframes fallInFromTop {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fall-in-top {
+            animation: fallInFromTop 1s ease-out forwards;
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-in-right {
+            animation: slideInFromRight 1s ease-out forwards;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -264,7 +312,7 @@
         </div>
     </nav>
 
-    <div class="relative bg-gray-800">
+    <div class="relative bg-gray-800 fall-in-top">
         <div class="absolute inset-x-0 bottom-0">
             <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-gray-900" preserveAspectRatio="none">
                 <path
@@ -290,7 +338,7 @@
 
 
     <div class="relative overflow-hidden bg-gray-900 pt-16 pb-32 space-y-24">
-        <div class="relative">
+        <div class="relative slide-in-left">
             <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8 ">
                 <div class="mx-auto max-w-xl px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0 ">
 
@@ -330,20 +378,21 @@
 
 
         <div class="relative">
-            <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8 ">
+            <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8 slide-in-right"
+                id="slideBox">
                 <div class="mx-auto max-w-xl px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0 lg:col-start-2">
                     <div>
                         <div>
-                            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-500 fade-in">
+                            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-500">
                                 <i class="fas fa-eye"></i>
 
                             </span>
                         </div>
                         <div class="mt-6">
-                            <h2 class="text-3xl font-bold tracking-tight text-white fade-in">
+                            <h2 class="text-3xl font-bold tracking-tight text-white">
                                 Vision:
                             </h2>
-                            <p class="mt-4 text-lg text-gray-300 fade-in">
+                            <p class="mt-4 text-lg text-gray-300">
                                 To be a dynamic and inclusive student body that drives technological advancements,
                                 inspiring future leaders and innovators in Information Technology, while contributing to
                                 the local and global tech community. We strive to create a culture of continuous
@@ -354,7 +403,7 @@
                     </div>
                 </div>
                 <div class="mt-12 sm:mt-16 lg:mt-0">
-                    <div class="-ml-48 pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0 fade-in">
+                    <div class="-ml-48 pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">
                         <img alt="Inbox user interface" loading="lazy" width="647" height="486"
                             class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
                             style="color:transparent" src="/images/vision.jpeg">
@@ -371,7 +420,8 @@
 
 
             <div class="relative mx-auto max-w-5xl text-center">
-                <span class="text-gray-400 my-3 flex items-center justify-center font-medium uppercase tracking-wider fade-in">
+                <span
+                    class="text-gray-400 my-3 flex items-center justify-center font-medium uppercase tracking-wider fade-in">
                     What we foster
                 </span>
                 <h2
@@ -382,31 +432,33 @@
             </div>
 
 
-            <div class="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-1 lg:grid-cols-3">
-                <div class="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
+            <div class="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-1 lg:grid-cols-3" id="fallBox">
+                <div class="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow" id="fallBox">
                     <div class="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border "
                         style="background-image: linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%); border-color: rgb(93, 79, 240);">
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3 class="mt-6 text-gray-400 fade-in">Innovation</h3>
-                    <p class="my-4 mb-0 font-normal leading-relaxed tracking-wide text-gray-400 fade-in"> Encouraging creative
+                    <p class="my-4 mb-0 font-normal leading-relaxed tracking-wide text-gray-400 fade-in"> Encouraging
+                        creative
                         problem-solving and forward-thinking approaches to technology. </p>
                 </div>
 
 
-                <div class="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
+                <div class="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow" id="fallBox">
                     <div class="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border fade-in"
                         style="background-image: linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%); border-color: rgb(93, 79, 240);">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3 class="mt-6 text-gray-400">Collaboration</h3>
-                    <p class="my-4 mb-0 font-normal leading-relaxed tracking-wide text-gray-400 fade-in">Fostering teamwork and
+                    <p class="my-4 mb-0 font-normal leading-relaxed tracking-wide text-gray-400 fade-in">Fostering
+                        teamwork and
                         partnerships within the student community and industry.
                     </p>
                 </div>
 
 
-                <div class="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
+                <div class="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow" id="fallBox">
                     <div class="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border fade-in"
                         style="background-image: linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%); border-color: rgb(93, 79, 240);">
                         <i class="fas fa-award"></i>
@@ -430,7 +482,8 @@
                             <span class="text-white ">init</span>()<br><span class="text-white">ASSOCIATION</span>
                         </h1>
                         </p>
-                        <p class="mt-[18px] text-[15px] font-normal text-white/[80%] fade-in">The Student Association of the
+                        <p class="mt-[18px] text-[15px] font-normal text-white/[80%] fade-in">The Student Association of
+                            the
                             Department of Information Technology at Amal Jyothi College of
                             Engineering fosters innovation, collaboration, and technical excellence among students. It
                             aims
@@ -574,6 +627,49 @@
         fadeIns.forEach(fadeIn => {
             observer.observe(fadeIn);
         });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const fallElement = document.getElementById('fallBox');
+
+            // Create an intersection observer for the fall element
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the falling animation class when the element comes into view
+                        entry.target.classList.add('fall-in-top');
+                        // Unobserve after adding animation to avoid retriggering
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            // Observe the target element for falling effect
+            observer.observe(fallElement);
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const targetElement = document.getElementById('slideBox');
+
+            // Create an intersection observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the sliding animation class when the element comes into view
+                        entry.target.classList.add('slide-in-right');
+                        // Unobserve after adding animation to avoid retriggering
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            // Observe the target element
+            observer.observe(targetElement);
+        });
+
+
+
     </script>
 </body>
 
