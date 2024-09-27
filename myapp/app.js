@@ -16,9 +16,9 @@ var app = express();
 const session = require('express-session');
 const flash = require('connect-flash');
 
-import { injectSpeedInsights } from '@vercel/speed-insights';
-
+const { injectSpeedInsights } = require('@vercel/speed-insights');
 injectSpeedInsights();
+
 
 app.use(session({
   secret: JWT_SECRET, 
