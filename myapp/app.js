@@ -16,8 +16,6 @@ var app = express();
 const session = require('express-session');
 const flash = require('connect-flash');
 
-const { injectSpeedInsights } = require('@vercel/speed-insights');
-injectSpeedInsights();
 
 
 app.use(session({
