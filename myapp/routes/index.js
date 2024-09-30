@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const { Event, Member,Message } = require('../models/models');
+const { Event, Member, Message } = require('../models/models');
+const cloudinary = require('cloudinary').v2;
 
 
 router.get("/image/:id", async (req, res) => {
@@ -38,17 +39,17 @@ router.get("/memberImage/:id", async (req, res) => {
 });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index');
 });
-router.get('/contactus', function(req, res, next) {
+router.get('/contactus', function (req, res, next) {
   res.render('contact');
 });
-router.get('/about', function(req, res, next) {
+router.get('/about', function (req, res, next) {
   res.render('about');
-  });
+});
 /* GET all events */
-router.get('/events', async function(req, res, next) {
+router.get('/events', async function (req, res, next) {
   try {
     const events = await Event.find(); // Fetch all events from the database
     res.render('events', { events }); // Pass events data to the events view
@@ -58,20 +59,18 @@ router.get('/events', async function(req, res, next) {
   }
 });
 
-router.get('/events/:id',async (req,res)=>{
-  try{
+router.get('/events/:id', async (req, res) => {
+  try {
     const event = await Event.findById(req.params.id);
-    res.render('eventDetails',{event});
-  }catch(err){
+    res.render('eventDetails', { event });
+  } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
   }
 })
 
-
-
 /* GET all members */
-router.get('/members', async function(req, res, next) {
+router.get('/members', async function (req, res, next) {
   try {
     const members = await Member.find(); // Fetch all members from the database
     res.render('members', { members }); // Pass members data to the members view
@@ -81,8 +80,8 @@ router.get('/members', async function(req, res, next) {
   }
 });
 
-router.post('/sendMessage', async function(req, res) { 
-  try { 
+router.post('/sendMessage', async function (req, res) {
+  try {
     const { email, subject, message } = req.body;
     const date = new Date();
 
@@ -90,13 +89,16 @@ router.post('/sendMessage', async function(req, res) {
       email,
       subject,
       message,
-      date }); 
-    await newMessage.save(); 
+      date
+    });
+    await newMessage.save();
     res.redirect('/contactus')
-  } catch (err) { 
-    console.error(err); 
-    res.status(500).send('Server Error'); 
-  } });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 
 

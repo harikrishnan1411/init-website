@@ -248,7 +248,7 @@ router.get('/addEvents', authenticateToken, function (req, res, next) {
 // Route to add a new event
 router.post("/addEvent", authenticateToken, upload.single("image"), async (req, res) => {
 
-  const { title, description, fees, coordinators, venue, date, formLink } = req.body;
+  const { title, description, fees, coordinators, venue, date, formLink, tagline } = req.body;
 
   // Ensure req.file is present and contains the image data
   if (!req.file) {
@@ -257,6 +257,7 @@ router.post("/addEvent", authenticateToken, upload.single("image"), async (req, 
 
   const newEvent = new Event({
     title: title,
+    tagline: tagline,
     description: description,
     fees: fees,
     coordinators: Array.isArray(coordinators)

@@ -158,22 +158,7 @@
                             <input type="number" class="form-control" id="eventFee"
                                 placeholder="Enter registration fees" name="fees" value="{{event.fees}}" required>
                         </div>
-                        {{#each event.coordinators}}
-                        <div class="mb-3">
-                            <label for="eventCoordinators" class="form-label">Coordinators</label>
-                            <div id="coordinators">
-                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control" name="coordinators[0][name]"
-                                        placeholder="Coordinator's name" value="{{this.name}}" required>
-                                    <input type="text" class="form-control" name="coordinators[0][number]"
-                                        placeholder="Coordinator's contact number" value="{{this.number}}" required>
-                                </div>
-                            </div>
-                            {{/each}}
-
-                            <button type="button" class="btn btn-secondary" id="addCoordinator">Add Another
-                                Coordinator</button>
-                        </div>
+                    
                         <div class="mb-3">
                             <label for="eventVenue" class="form-label">Event Venue</label>
                             <input type="text" class="form-control" id="eventVenue" placeholder="Enter event venue"

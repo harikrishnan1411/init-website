@@ -33,7 +33,6 @@ app.use((req, res, next) => {
 });
 
 
-
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOURL||"mongodb+srv://harikrishnan123:Ci5wxDxk77liZxdO@init.lekb52w.mongodb.net/?retryWrites=true&w=majority&appName=init")
 .then( ()=> {console.log("Database connected")})
