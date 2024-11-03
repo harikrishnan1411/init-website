@@ -308,7 +308,7 @@ router.post("/addMember", authenticateToken, upload.single("image"), async (req,
   try {
     await newMember.save();
     console.log("Member added successfully");
-    res.redirect("/admin/eventManagement");
+    res.redirect("/admin/memberManagement");
   } catch (error) {
     console.error("Error adding Member:", error);
     res.status(500).send("Internal Server Error");
