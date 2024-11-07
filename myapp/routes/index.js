@@ -40,22 +40,22 @@ router.get("/memberImage/:id", async (req, res) => {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.render('index', { title: 'init() IT Association' });
 });
 
 router.get('/contactus', function (req, res, next) {
-  res.render('contact', { title: 'Contact Us' });
+  res.render('contact', { title: 'init() IT Association' });
 });
 
 router.get('/about', function (req, res, next) {
-  res.render('about', { title: 'About Us' });
+  res.render('about', { title: 'init() IT Association' });
 });
 
 /* GET all events */
 router.get('/events', async function (req, res, next) {
   try {
     const events = await Event.find(); // Fetch all events from the database
-    res.render('events', { title: 'Events', events }); // Pass title and events data
+    res.render('events', { title: 'init() IT Association', events }); // Pass title and events data
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
@@ -65,7 +65,7 @@ router.get('/events', async function (req, res, next) {
 router.get('/events/:id', async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
-    res.render('eventDetails', { title: event.name, event }); // Use event name as title
+    res.render('eventDetails', { title: 'init() IT Association', event }); // Use event name as title
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
@@ -76,7 +76,7 @@ router.get('/events/:id', async (req, res) => {
 router.get('/members', async function (req, res, next) {
   try {
     const members = await Member.find(); // Fetch all members from the database
-    res.render('members', { title: 'Members', members }); // Pass title and members data
+    res.render('members', { title: 'init() IT Association', members }); // Pass title and members data
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');

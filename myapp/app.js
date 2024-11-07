@@ -11,12 +11,16 @@ const JWT_SECRET = process.env.JWT_SECRET;
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 
+
+
+
 var app = express();
 
 const session = require('express-session');
 const flash = require('connect-flash');
 
-
+const favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname, 'public', 'images', 'header.ico')));
 
 app.use(session({
   secret: JWT_SECRET, 
