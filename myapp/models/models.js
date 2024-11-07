@@ -59,7 +59,7 @@ const eventSchema = new mongoose.Schema({
   fees: {
     type: Number,
     required: true,
-    default: 'Free Event'
+    default: 0
   },
   coordinators: {
     type: [
