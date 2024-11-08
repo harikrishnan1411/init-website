@@ -47,6 +47,7 @@
             font-optical-sizing: auto;
             font-weight: <weight>;
             font-style: normal;
+            transition: top 0.3s;
         }
 
         body {
@@ -542,7 +543,7 @@
         <div class="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin"></div>
     </div>
 
-    <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
+    <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50" id="navbar">
         <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
             <div class="lg:w-1/2">
                 <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
@@ -647,6 +648,16 @@
 
 
     <script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-60px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
 
         window.addEventListener('load', () => {
             // Keep the spinner visible for 2 seconds after the page has loaded

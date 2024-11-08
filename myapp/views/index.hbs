@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <meta name="google-site-verification" content="JTfF5oyi67mRwa4VHxsfnm3TUsWRqO2HnWQ0isP-uVY" />
@@ -12,12 +12,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Kode+Mono:wght@400..700&display=swap"
         rel="stylesheet">
-   
+
     <title>init() IT Association</title>
     <style>
         html {
             color-scheme: dark;
             /* or use 'dark' if you want your website to always be dark themed */
+        }
+
+        nav {
+            transition: top 0.3s;
         }
 
         nav,
@@ -161,7 +165,7 @@
 
 <body class="bg-gray-900">
 
-    <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50">
+    <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50" id="navbar">
         <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
             <div class="lg:w-1/2">
                 <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
@@ -457,6 +461,16 @@
 
 
     <script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-60px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
 
         const words = ["init() IT Association"];
         let i = 0;
