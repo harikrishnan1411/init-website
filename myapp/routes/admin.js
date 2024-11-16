@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const { Event, Member, Message, Admin } = require("../models/models");
+const { Event, Member, Message, Admin, Gallery } = require("../models/models");
 const { render } = require("../app");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -9,8 +9,49 @@ const authenticateToken = require('../middleware/jwtMiddleware');
 require('dotenv').config();
 const nodemailer = require("nodemailer");
 var JWT_SECRET = process.env.JWT_SECRET;
+const cloudinary = require('cloudinary').v2;
+var API_SECRET = process.env.API_SECRET;
 
+// (async function() {
 
+//   //     // Configuration
+//       cloudinary.config({ 
+//           cloud_name: 'doo4sc1kz', 
+//           api_key: '335435582773489', 
+//           api_secret: API_SECRET // Click 'View API Keys' above to copy your API secret
+//       });
+      
+//       // Upload an image
+//        const uploadResult = await cloudinary.uploader
+//          .upload(
+//              'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
+//                  public_id: 'shoes',
+//              }
+//          )
+//          .catch((error) => {
+//              console.log(error);
+//          });
+      
+//       console.log(uploadResult);
+      
+//       // Optimize delivery by resizing and applying auto-format and auto-quality
+//       const optimizeUrl = cloudinary.url('graduation_1_gvox3s', {
+//           fetch_format: 'auto',
+//           quality: 'auto'
+//       });
+      
+//       console.log(optimizeUrl);
+      
+//       // Transform the image: auto-crop to square aspect_ratio
+//       const autoCropUrl = cloudinary.url('shoes', {
+//           crop: 'auto',
+//           gravity: 'auto',
+//           width: 500,
+//           height: 500,
+//       });
+      
+//       console.log(autoCropUrl);    
+//   })();
 
 
 // Use memory storage for multer to keep image in memory
@@ -25,6 +66,10 @@ router.get("/", authenticateToken, (req, res) => {
 
 router.get("/login", (req, res) => {
   res.render("admin-login");
+})
+
+router.get("/addToGallery", (req,res) => {
+  res.render("addToGallery");
 })
 
 router.post('/login', async (req, res) => {
@@ -499,4 +544,31 @@ router.get("/eventManagement/markAsDone/:id", authenticateToken, async (req, res
   }
 });
 
+
+router.post("/addToGallery", async (req, res) => {
+  const { title, imageLink, isCarousel } = req.body;
+
+  // Check if the required fields are provided
+  if (!title || !imageLink) {
+    return res.status(400).json({ error: "Title and image link are required" });
+  }
+
+  // Create a new Gallery entry with the data from the form
+  const newGallery = new Gallery({
+    title: title,
+    imageLink: imageLink,
+    carouselType: isCarousel === 'on' // The checkbox value is 'on' if checked, otherwise undefined
+  });
+
+  console.log(newGallery);
+
+  try {
+    // Save the new gallery entry to the database
+    await newGallery.save();
+    res.status(201).json({ message: 'Gallery added successfully' });
+  } catch (error) {
+    console.error('Error adding Gallery:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 module.exports = router;

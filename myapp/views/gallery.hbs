@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      color-scheme: dark;
+      /* or use 'dark' if you want your website to always be dark themed */
+    }
+
+    nav {
+      transition: top 0.3s;
+    }
+
+    nav {
+      font-family: "Kode Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+    }
+
+
+    /* Ensure mobile nav links are styled and visible */
+    #mobileNav {
+      transform: translateX(100%);
+      /* Start off-screen to the right */
+      transition: transform 0.3s ease;
+      top: 0;
+      /* Aligns with the top of the viewport */
+      right: 0;
+      /* Aligns with the right side of the viewport */
+      height: 100vh;
+      /* Ensures it takes the full height of the viewport */
+      width: 100%;
+      /* Adjust the width as needed */
+      padding: 0;
+      /* Remove any default padding */
+      margin: 0;
+      /* Remove any default margin */
+      background-color: rgba(0, 0, 0, 0.8);
+      /* Semi-transparent background */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      z-index: 9999;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      top: 0;
+      /* Ensure it is aligned with the top */
+      left: 0;
+    }
+
+    #mobileNav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      /* Light background on hover */
+    }
+
+    /* Ensure hamburger button is properly styled */
+    #hamburger {
+      z-index: 60;
+    }
+
+    /* Ensure mobile nav is hidden off-screen by default */
+
+
+    /* Mobile Nav active state */
+    #mobileNav.active {
+      transform: translateX(0);
+    }
+
+    #closeMobileNav {
+      margin: 1rem;
+      /* Adjust margin if necessary */
+      align-self: flex-end;
+      /* Align to the end of the container */
+    }
+
+
+
+    @media (min-width: 1024px) {
+      #navItems {
+        display: flex !important;
+      }
+
+      #hamburger,
+      #mobileNav {
+        display: none !important;
+      }
+    }
+
+    .carousel {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: scroll;
+      scrollbar-width: none;
+      /* For Firefox */
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+      /* For Chrome, Safari, and Edge */
+    }
+
+    .carousel-item {
+      scroll-snap-align: center;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900">
+  <nav class="w-full bg-transparent h-fit overflow-hidden fixed top-0 left-0 z-50" id="navbar">
+    <div class="py-4 lg:px-8 px-4 max-w-[4120px] h-16 mx-auto text-white flex items-center justify-between">
+      <div class="lg:w-1/2">
+        <a href="/" class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
+          <img src="/images/logo.png" alt="Company Logo" class="h-12 object-contain">
+        </a>
+      </div>
+      <div
+        class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
+        id="navItems">
+        <a href="/events" class="group">
+          EVENTS
+          <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+        </a>
+        <a href="/members" class="group">
+          MEMBERS
+          <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+        </a>
+        <a href="/contactus" class="group">
+          CONTACT
+          <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+        </a>
+        <a href="/about" class="group">
+          ABOUT US
+          <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+        </a>
+      </div>
+      <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobileNav"
+      class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+      <button class="self-end text-2xl" id="closeMobileNav">
+        <i class="fas fa-times"></i>
+      </button>
+      <a href="/events">EVENTS</a>
+      <a href="/members">MEMBERS</a>
+      <a href="/contactus">CONTACT</a>
+      <a href="/about">ABOUT US</a>
+    </div>
+  </nav>
+
+  <!-- Carousel Container (Now 60% of viewport height) -->
+  <div class="relative w-full h-[80vh] overflow-hidden mb-8">
+    <!-- Carousel Wrapper -->
+    <div class="carousel flex w-full h-full overflow-x-scroll whitespace-nowrap">
+
+      <!-- Carousel Item 1 -->
+      {{#each galleryImages}}
+      {{#if this.carouselType}}
+      <div class="carousel-item flex-shrink-0 w-full h-full">
+        <img src="{{this.imageLink}}" alt="{{this.title}}" class="w-full h-full object-cover">
+      </div>
+      {{/if}}
+      {{/each}}
+
+    </div>
+
+    <!-- Left Arrow -->
+    <button
+      class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full"
+      onclick="prevSlide()">
+      &lt;
+    </button>
+
+    <!-- Right Arrow -->
+    <button
+      class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full"
+      onclick="nextSlide()">
+      &gt;
+    </button>
+  </div>
+
+  <!-- Additional Content Below Carousel -->
+  <section class="text-gray-600 body-font mt-[-60pt]">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h2
+          class="mb-6 font-sans text-3xl text-center font-bold tracking-tight text-white sm:text-4xl sm:leading-none fall-in-top">
+          Gallery
+        </h2>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-300">Each image tells a unique story and
+          showcases the beauty and
+          emotion of our experiences.</p>
+      </div>
+
+      <div class="flex flex-wrap -m-4">
+        {{#each galleryImages}}
+        {{#unless this.carouselType}}
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative" style="padding-bottom: 100%; position: relative;">
+            <img alt="{{this.title}}" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="{{this.imageLink}}">
+
+            <!-- The overlay div, now covering the entire image on hover -->
+            <div
+              class="absolute inset-0 w-full h-full bg-black opacity-0 hover:opacity-80 flex justify-center items-center transition-opacity duration-300">
+              <h1 class="title-font text-lg font-medium text-white mb-3 text-center">{{this.title}}</h1>
+            </div>
+
+          </div>
+        </div>
+        {{/unless}}
+        {{/each}}
+
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-60px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+
+    const carousel = document.querySelector('.carousel');
+    let intervalTime = 3000; // Auto-scroll interval in milliseconds
+    let currentIndex = 0;
+    const totalSlides = carousel.querySelectorAll('.carousel-item').length;
+
+    // Auto-scroll function
+    function autoScroll() {
+      const slideWidth = carousel.querySelector('.carousel-item').clientWidth;
+      currentIndex++;
+
+      if (currentIndex >= totalSlides) {
+        currentIndex = 0; // Reset to the first slide
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
+      }
+    }
+
+    // Set interval for auto-scrolling
+    setInterval(autoScroll, intervalTime);
+
+    // Manual scroll functions
+    function nextSlide() {
+      const slideWidth = carousel.querySelector('.carousel-item').clientWidth;
+      currentIndex++;
+
+      if (currentIndex >= totalSlides) {
+        currentIndex = 0; // Reset to the first slide
+      }
+
+      carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
+    }
+
+    function prevSlide() {
+      const slideWidth = carousel.querySelector('.carousel-item').clientWidth;
+      currentIndex--;
+
+      if (currentIndex < 0) {
+        currentIndex = totalSlides - 1; // Go to the last slide
+      }
+
+      carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+    }
+  </script>
+</body>
+
+</html>

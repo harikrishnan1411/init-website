@@ -99,11 +99,34 @@ const eventSchema = new mongoose.Schema({
 });
 
 const adminSchema = new mongoose.Schema({
-  adminEmail: { type: String, required: true },
-  password: { type: String, required: true },
+  adminEmail: { type: String, 
+    required: true 
+  },
+
+  password: { type: String,
+    required: true 
+  },
+
   otp: { type: String },
 });
 
+const gallerySchema = new mongoose.Schema({
+  title: {
+    type: String,
+  },
+  imageLink: {
+    type: String,
+    required: true,
+  },
+  carouselType: {
+    type: Boolean,
+    default: false,
+    required: true
+  }
+});
+
+
+const Gallery = mongoose.model("Gallery", gallerySchema);
 const Admin = mongoose.model("Admin", adminSchema);
 const Event = mongoose.model("Event", eventSchema);
 const Member = mongoose.model("Member", memberSchema);
@@ -113,5 +136,6 @@ module.exports = {
   Event,
   Member,
   Message,
-  Admin
+  Admin,
+  Gallery
 };
