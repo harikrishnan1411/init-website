@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #272727;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            margin-left: -12px;
+
+            width: 200px;
+            background-color: #1f1f1f;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ffffff;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #026e47;
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        .card {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .btn-primary:hover {
+            background-color: #575757;
+            border-color: #575757;
+        }
+
+        table {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        td {
+            background-color: #2b2b2b;
+            color: #ffffff;
+        }
+
+        table tr:hover {
+            background-color: #3a3a3a;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #444;
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #4d4d4d;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+            }
+
+            div.content {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- The sidebar -->
+        <div class="sidebar">
+            <a href="/admin">Dashboard</a>
+            <a href="/admin/eventManagement">Event Management</a>
+            <a class="active" href="/admin/memberManagement">Member Management</a>
+            <a href="/admin/userFeedbacks">User Feedbacks</a>
+            <a href="/admin/logout">Logout</a>
+        </div>
+
+        <div class="content">
+            <div class="container">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Add Image</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/admin/addToGallery" method="post">
+                            <div class="mb-3">
+                                <label for="imageName" class="form-label">Title of Event</label>
+                                <input type="text" class="form-control" id="imageName"
+                                    placeholder="Enter Title of Event" name="title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imageLink" class="form-label">Image Link</label>
+                                <input type="text" class="form-control" id="imageLink" placeholder="Enter Image Link"
+                                    name="imageLink" required>
+                            </div>
+                            <div class="mb-3 form-check"></div>
+                                <input type="checkbox" class="form-check-input" id="isCarousel" name="isCarousel">
+                                <label class="form-check-label" for="isCarousel">Add as carousel image</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Image</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

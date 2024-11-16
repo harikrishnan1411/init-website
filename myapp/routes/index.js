@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { Event, Member, Message } = require('../models/models');
-const cloudinary = require('cloudinary').v2;
+const { Event, Member, Message, Gallery } = require('../models/models');
 
 
 router.get("/image/:id", async (req, res) => {
@@ -77,6 +76,16 @@ router.get('/members', async function (req, res, next) {
   try {
     const members = await Member.find(); // Fetch all members from the database
     res.render('members', { title: 'init() IT Association', members }); // Pass title and members data
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get('/gallery', async function (req, res, next) {
+  try {
+    const galleryImages = await Gallery.find(); // Fetch all events from the database
+    res.render('gallery', { title: 'init() IT Association', galleryImages }); // Pass title and events data
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');

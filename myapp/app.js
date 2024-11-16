@@ -25,7 +25,8 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'header.ico')));
 app.use(session({
   secret: JWT_SECRET, 
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 
 app.use(flash());
