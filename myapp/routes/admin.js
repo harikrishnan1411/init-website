@@ -9,49 +9,7 @@ const authenticateToken = require('../middleware/jwtMiddleware');
 require('dotenv').config();
 const nodemailer = require("nodemailer");
 var JWT_SECRET = process.env.JWT_SECRET;
-const cloudinary = require('cloudinary').v2;
-var API_SECRET = process.env.API_SECRET;
 
-// (async function() {
-
-//   //     // Configuration
-//       cloudinary.config({ 
-//           cloud_name: 'doo4sc1kz', 
-//           api_key: '335435582773489', 
-//           api_secret: API_SECRET // Click 'View API Keys' above to copy your API secret
-//       });
-      
-//       // Upload an image
-//        const uploadResult = await cloudinary.uploader
-//          .upload(
-//              'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
-//                  public_id: 'shoes',
-//              }
-//          )
-//          .catch((error) => {
-//              console.log(error);
-//          });
-      
-//       console.log(uploadResult);
-      
-//       // Optimize delivery by resizing and applying auto-format and auto-quality
-//       const optimizeUrl = cloudinary.url('graduation_1_gvox3s', {
-//           fetch_format: 'auto',
-//           quality: 'auto'
-//       });
-      
-//       console.log(optimizeUrl);
-      
-//       // Transform the image: auto-crop to square aspect_ratio
-//       const autoCropUrl = cloudinary.url('shoes', {
-//           crop: 'auto',
-//           gravity: 'auto',
-//           width: 500,
-//           height: 500,
-//       });
-      
-//       console.log(autoCropUrl);    
-//   })();
 
 
 // Use memory storage for multer to keep image in memory
@@ -78,21 +36,21 @@ router.post('/login', async (req, res) => {
       return res.redirect('/admin/login');
     }
 
-const isPasswordValid = await bcrypt.compare(password, admin.password);
-if (!isPasswordValid) {
-  req.flash('error_msg', 'Incorrect password.');
-  return res.redirect('/admin/login');
-}
+    const isPasswordValid = await bcrypt.compare(password, admin.password);
+    if (!isPasswordValid) {
+      req.flash('error_msg', 'Incorrect password.');
+      return res.redirect('/admin/login');
+    }
 
-req.flash('success_msg', 'Login successful.');
-const token = jwt.sign({ id: admin._id, adminEmail: admin.adminEmail }, JWT_SECRET, { expiresIn: '1h' });
-res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-res.redirect('/admin');
+    req.flash('success_msg', 'Login successful.');
+    const token = jwt.sign({ id: admin._id, adminEmail: admin.adminEmail }, JWT_SECRET, { expiresIn: '1h' });
+    res.cookie("token", token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+    res.redirect('/admin');
 
   } catch (error) {
-  console.error('Login error:', error);
-  res.status(500).json({ error: 'Internal Server Error' });
-}
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 
@@ -117,7 +75,8 @@ router.post('/forgotPassword', async (req, res) => {
 
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
-    admin.otp = otp;
+    const hashedOtp = await bcrypt.hash(otp, 6);
+    admin.otp = hashedOtp;
     await admin.save(); // Save OTP to admin's record
 
     // Get email credentials from environment variables
@@ -166,14 +125,15 @@ router.post('/forgotPassword', async (req, res) => {
 });
 
 
-router.post('/verify-otp', async (req,res)=>{
+router.post('/verify-otp', async (req, res) => {
   const { adminEmail, otp } = req.body;
   try {
     const admin = await Admin.findOne({ adminEmail });
     if (!admin) {
       return res.status(400).json({ message: 'Admin not found' });
     }
-    if (admin.otp !== otp) {
+    const isOtpValid = await bcrypt.compare(otp, admin.otp);
+    if (!isOtpValid) {
       return res.status(400).json({ message: 'Invalid OTP' });
     }
     res.status(200).json({ message: 'OTP verified successfully' });
@@ -187,28 +147,28 @@ router.post('/reset-password', async (req, res) => {
   const { adminEmail, newPassword } = req.body;
 
   try {
-      // Check if newPassword is provided
-      if (!newPassword || newPassword.trim() === '') {
-          return res.status(400).json({ message: 'Password is required.' });
-      }
+    // Check if newPassword is provided
+    if (!newPassword || newPassword.trim() === '') {
+      return res.status(400).json({ message: 'Password is required.' });
+    }
 
-      // Find the admin user by email
-      const admin = await Admin.findOne({ adminEmail });
-      if (!admin) {
-          return res.status(404).json({ message: 'Admin not found.' });
-      }
+    // Find the admin user by email
+    const admin = await Admin.findOne({ adminEmail });
+    if (!admin) {
+      return res.status(404).json({ message: 'Admin not found.' });
+    }
 
-      // Hash the new password (ensure the newPassword is defined)
-      const hashedPassword = await bcrypt.hash(newPassword, 10);  // Use salt rounds of 10
-      admin.password = hashedPassword;
+    // Hash the new password (ensure the newPassword is defined)
+    const hashedPassword = await bcrypt.hash(newPassword, 10);  // Use salt rounds of 10
+    admin.password = hashedPassword;
 
-      // Save the updated admin with the new password
-      await admin.save();
+    // Save the updated admin with the new password
+    await admin.save();
 
-      res.status(200).json({ message: 'Password reset successfully!' });
+    res.status(200).json({ message: 'Password reset successfully!' });
   } catch (error) {
-      console.error('Password reset error:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Password reset error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -550,7 +510,7 @@ router.get("/galleryManagement", authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/addToGallery", (req,res) => {
+router.get("/addToGallery", (req, res) => {
   res.render("addToGallery");
 });
 
