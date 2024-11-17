@@ -122,8 +122,8 @@
         <div class="sidebar">
             <a href="/admin">Dashboard</a>
             <a href="/admin/eventManagement">Event Management</a>
-            <a class="active" href="/admin/memberManagement">Member Management</a>
-            <a href="/admin/galleryManagement">Gallery Management</a>
+            <a href="/admin/memberManagement">Member Management</a>
+            <a class="active" href="/admin/galleryManagement">Gallery Management</a>
             <a href="/admin/userFeedbacks">User Feedbacks</a>
             <a href="/admin/logout">Logout</a>
         </div>
@@ -131,66 +131,35 @@
         <div class="content">
             <div class="container">
                 <div class="input-group mt-3">
-                    <a class="btn btn-primary" href="/admin/addMember">Add Member</a>
+                    <a class="btn btn-primary" href="/admin/addToGallery">Add Image To Gallery</a>
                 </div>
-                <h1>Active Members</h1>
+                <h1>Gallery Images</h1>
                 <table class="table-dark mt-4">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Designation</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         
-                        {{#each members}}
-                        {{#if this.active}}
+                        {{#each gallery}}
+
                         <tr>
-                            <td>{{this.name}}</td>
-                            <td>{{this.designation}}</td>
+                            <td>{{this.title}}</td>
+                            <td><img src="{{this.imageLink}}" alt="{{this.title}}" width="150" height="150"></td>
                             <td>
-                                <a class="btn btn-primary" href="/admin/MarkAsPastMember/{{this._id}}">Mark as Past Member</a>
-                                <a class="btn btn-danger" href="/admin/deleteMember/{{this._id}}">Remove this member</a>
+                                <a class="btn btn-danger" href="/admin/deleteGalleryImage/{{this._id}}">Remove this image</a>
                             </td>
                         </tr>
-                        {{/if}}
-                        {{/each}}
-                    </tbody>
-                </table>
-                <h1>Past Members</h1>
-                <table class="table-dark mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Designation</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        {{#each members}}
-                        {{#unless this.active}}
-                        <tr>
-                            <td>{{this.name}}</td>
-                            <td>{{this.designation}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="/admin/MarkAsPresentMember/{{this._id}}">Mark as Present Member</a>
-                                <a class="btn btn-danger" href="/admin/deleteMember/{{this._id}}">Remove this member</a>
-                            </td>
-                        </tr>
-                        {{/unless}}
                         {{/each}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        
-    </script>
 </body>
 
 </html>

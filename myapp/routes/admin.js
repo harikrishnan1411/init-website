@@ -66,11 +66,7 @@ router.get("/", authenticateToken, (req, res) => {
 
 router.get("/login", (req, res) => {
   res.render("admin-login");
-})
-
-router.get("/addToGallery", (req,res) => {
-  res.render("addToGallery");
-})
+});
 
 router.post('/login', async (req, res) => {
   const { adminEmail, password } = req.body;
@@ -544,8 +540,21 @@ router.get("/eventManagement/markAsDone/:id", authenticateToken, async (req, res
   }
 });
 
+router.get("/galleryManagement", authenticateToken, async (req, res) => {
+  try {
+    const galleryImages = await Gallery.find({});
+    res.render("admin-gallery", { gallery: galleryImages });
+  } catch (error) {
+    console.error("Error fetching gallery:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
-router.post("/addToGallery", async (req, res) => {
+router.get("/addToGallery", (req,res) => {
+  res.render("addToGallery");
+});
+
+router.post("/addToGallery", authenticateToken, async (req, res) => {
   const { title, imageLink, isCarousel } = req.body;
 
   // Check if the required fields are provided
@@ -571,4 +580,22 @@ router.post("/addToGallery", async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+router.get("/deleteGalleryImage/:id", authenticateToken, async (req, res) => {
+  try {
+    const galleryId = req.params.id;
+    const result = await Gallery.findByIdAndDelete(galleryId);
+
+    if (result) {
+      res.redirect("/admin/galleryManagement")
+    } else {
+
+      res.status(404).send('Gallery not found');
+    }
+  } catch (error) {
+    console.error('Error deleting gallery:', error);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;

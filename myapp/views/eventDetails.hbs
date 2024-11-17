@@ -28,7 +28,7 @@
             color-scheme: dark;
             /* or use 'dark' if you want your website to always be dark themed */
         }
-       
+
         nav {
             font-family: "Kode Mono", monospace;
             font-optical-sizing: auto;
@@ -98,7 +98,7 @@
             /* Align to the end of the container */
         }
 
-       
+
 
         /* Event Details Section */
 
@@ -116,8 +116,8 @@
 
         /* Event Title Styling */
         .event-details h1 {
-            
-            
+
+
             margin-bottom: 20px;
             margin-left: 10px;
             text-transform: uppercase;
@@ -253,10 +253,9 @@
         }
 
         /*End Animations*/
-        section{
+        section {
             margin-top: 10px;
         }
-
     </style>
 </head>
 
@@ -268,22 +267,33 @@
                     <img src="/images/logo.png" alt="Company Logo" class="h-12 object-contain">
                 </a>
             </div>
-            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg" id="navItems">
-                <a href="/events" class="group">EVENTS<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
-                <a href="/members" class="group">MEMBERS<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
-                <a href="/contactus" class="group">CONTACT<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
-                <a href="/about" class="group">ABOUT US<div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+            <div class="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-8 uppercase tracking-wider cursor-pointer text-lg"
+                id="navItems">
+                <a href="/events" class="group">EVENTS<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/members" class="group">MEMBERS<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/GALLERY" class="group">
+                    GALLERY
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
+                <a href="/contactus" class="group">CONTACT<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
+                <a href="/about" class="group">ABOUT US<div
+                        class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div></a>
             </div>
             <button id="hamburger" class="lg:hidden text-white text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div id="mobileNav" class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
+        <div id="mobileNav"
+            class="fixed inset-0 top-16 left-[-100%] w-[100%] bg-gray-800 text-white flex flex-col items-center gap-6 pt-16 px-4 transition-transform duration-300 ease-in-out">
             <button class="self-end text-2xl" id="closeMobileNav">
                 <i class="fas fa-times"></i>
             </button>
             <a href="/events">EVENTS</a>
             <a href="/members">MEMBERS</a>
+            <a href="/gallery">GALLERY</a>
             <a href="/contactus">CONTACT</a>
             <a href="/about">ABOUT US</a>
         </div>
@@ -294,7 +304,8 @@
             <div class="event-details max-w-screen-lg mx-auto mt-12 px-5 lg:flex lg:gap-8">
                 <div class="lg:w-1/2">
                     <div class="w-full h-screen/2 rounded-lg overflow-hidden flex items-center justify-center">
-                        <img src="/image/{{event._id}}" alt="Event Image" class="w-auto h-full object-contain object-center">
+                        <img src="/image/{{event._id}}" alt="Event Image"
+                            class="w-auto h-full object-contain object-center">
                     </div>
                 </div>
                 <div class="lg:w-1/2 flex flex-col justify-center">
@@ -304,7 +315,8 @@
                         <p>{{event.description}}</p>
                         <p><strong>Venue:</strong> {{event.venue}}</p>
                         <p><strong>Date:</strong> {{event.date}}</p>
-                        <p><strong>Registration Fees:</strong> {{#unless event.fees}}Free Event{{else}}{{event.fees}}{{/unless}}</p>
+                        <p><strong>Registration Fees:</strong> {{#unless event.fees}}Free
+                            Event{{else}}{{event.fees}}{{/unless}}</p>
                     </div>
                     <div class="event-coordinators text-white mt-2">
                         <p><strong>Coordinators:</strong></p>
