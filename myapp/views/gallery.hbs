@@ -109,6 +109,33 @@
     .carousel-item {
       scroll-snap-align: center;
     }
+
+    .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+         @keyframes fallInFromTop {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fall-in-top {
+            animation: fallInFromTop 1s ease-out forwards;
+        }
   </style>
 </head>
 
@@ -131,6 +158,10 @@
           MEMBERS
           <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
         </a>
+        <a href="/GALLERY" class="group">
+                    GALLERY
+                    <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
+                </a>
         <a href="/contactus" class="group">
           CONTACT
           <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
@@ -151,78 +182,75 @@
       </button>
       <a href="/events">EVENTS</a>
       <a href="/members">MEMBERS</a>
+      <a href="/gallery">GALLERY</a>
       <a href="/contactus">CONTACT</a>
       <a href="/about">ABOUT US</a>
     </div>
   </nav>
 
-  <!-- Carousel Container (Now 60% of viewport height) -->
-  <div class="relative w-full h-[80vh] overflow-hidden mb-8">
-    <!-- Carousel Wrapper -->
-    <div class="carousel flex w-full h-full overflow-x-scroll whitespace-nowrap">
+  <!-- Carousel Container (75% of viewport height on mobile, 80% on larger screens) -->
+<div class="relative w-full lg:h-[85vh] overflow-hidden mb-8">
+  <!-- Carousel Wrapper -->
+  <div class="carousel flex w-full h-full overflow-x-scroll whitespace-nowrap">
 
-      <!-- Carousel Item 1 -->
-      {{#each galleryImages}}
-      {{#if this.carouselType}}
-      <div class="carousel-item flex-shrink-0 w-full h-full">
-        <img src="{{this.imageLink}}" alt="{{this.title}}" class="w-full h-full object-cover">
-      </div>
-      {{/if}}
-      {{/each}}
-
+    <!-- Carousel Item 1 -->
+    {{#each galleryImages}}
+    {{#if this.carouselType}}
+    <div class="carousel-item flex-shrink-0 w-full h-full">
+      <img src="{{this.imageLink}}" alt="{{this.title}}" class="w-full h-full object-cover">
     </div>
+    {{/if}}
+    {{/each}}
 
-    <!-- Left Arrow -->
-    <button
-      class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full"
-      onclick="prevSlide()">
-      &lt;
-    </button>
-
-    <!-- Right Arrow -->
-    <button
-      class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full"
-      onclick="nextSlide()">
-      &gt;
-    </button>
   </div>
 
-  <!-- Additional Content Below Carousel -->
-  <section class="text-gray-600 body-font mt-[-60pt]">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full mb-20">
-        <h2
-          class="mb-6 font-sans text-3xl text-center font-bold tracking-tight text-white sm:text-4xl sm:leading-none fall-in-top">
-          Gallery
-        </h2>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-300">Each image tells a unique story and
-          showcases the beauty and
-          emotion of our experiences.</p>
-      </div>
+  <!-- Left Arrow -->
+  <button
+    class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full"
+    onclick="prevSlide()">
+    &lt;
+  </button>
 
-      <div class="flex flex-wrap -m-4">
-        {{#each galleryImages}}
-        {{#unless this.carouselType}}
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative" style="padding-bottom: 100%; position: relative;">
-            <img alt="{{this.title}}" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="{{this.imageLink}}">
+  <!-- Right Arrow -->
+  <button
+    class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full"
+    onclick="nextSlide()">
+    &gt;
+  </button>
+</div>
 
-            <!-- The overlay div, now covering the entire image on hover -->
-            <div
-              class="absolute inset-0 w-full h-full bg-black opacity-0 hover:opacity-80 flex justify-center items-center transition-opacity duration-300">
-              <h1 class="title-font text-lg font-medium text-white mb-3 text-center">{{this.title}}</h1>
-            </div>
+<!-- Additional Content Below Carousel -->
+<section class="text-gray-600 body-font mt-[-68pt]">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h2
+        class="mb-6 font-sans text-3xl text-center font-bold tracking-tight text-white sm:text-4xl sm:leading-none fade-in">
+        Gallery
+      </h2>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-300 fade-in">Each image tells a unique story and
+        showcases the beauty and emotion of our experiences.</p>
+    </div>
 
+    <!-- Image Grid -->
+    <div class="flex flex-wrap -m-4">
+      {{#each galleryImages}}
+      {{#unless this.carouselType}}
+      <div class="w-1/2 sm:w-1/2 lg:w-1/3 p-4 fade-in"> <!-- Full width on mobile, 1/2 on small, 1/3 on large -->
+        <div class="flex relative" style="padding-bottom: 100%; position: relative;">
+          <img alt="{{this.title}}" class="absolute inset-0 w-full h-full object-cover object-center"
+            src="{{this.imageLink}}">
+          <div
+            class="absolute inset-0 w-full h-full bg-black opacity-0 hover:opacity-80 flex justify-center items-center transition-opacity duration-300">
+            <h1 class="title-font text-lg font-medium text-white mb-3 text-center">{{this.title}}</h1>
           </div>
         </div>
-        {{/unless}}
-        {{/each}}
-
       </div>
-
+      {{/unless}}
+      {{/each}}
     </div>
-  </section>
+  </div>
+</section>
+
 
   <script>
     var prevScrollpos = window.pageYOffset;
@@ -279,6 +307,42 @@
 
       carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
     }
+
+
+
+    // Fade-in animation on scroll
+        const fadeIns = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        fadeIns.forEach(fadeIn => {
+            observer.observe(fadeIn);
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const fallElement = document.getElementById('fallBox');
+
+            // Create an intersection observer for the fall element
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the falling animation class when the element comes into view
+                        entry.target.classList.add('fall-in-top');
+                        // Unobserve after adding animation to avoid retriggering
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            // Observe the target element for falling effect
+            observer.observe(fallElement);
+        });
   </script>
 </body>
 
