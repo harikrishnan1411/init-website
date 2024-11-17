@@ -21,6 +21,7 @@
       font-optical-sizing: auto;
       font-weight: <weight>;
       font-style: normal;
+      z-index: 1000;
     }
 
 
@@ -56,13 +57,13 @@
     }
 
     #mobileNav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      /* Light background on hover */
+            color: rgba(37, 180, 49, 0.9);
+            /* Change color on hover */
     }
 
     /* Ensure hamburger button is properly styled */
     #hamburger {
-      z-index: 60;
+      z-index: 600;
     }
 
     /* Ensure mobile nav is hidden off-screen by default */
@@ -189,7 +190,7 @@
   </nav>
 
   <!-- Carousel Container (75% of viewport height on mobile, 80% on larger screens) -->
-<div class="relative w-full lg:h-[85vh] overflow-hidden mb-8">
+<div class="relative w-full h-full lg:h-[85vh] overflow-hidden mb-8">
   <!-- Carousel Wrapper -->
   <div class="carousel flex w-full h-full overflow-x-scroll whitespace-nowrap">
 
@@ -343,6 +344,30 @@
             // Observe the target element for falling effect
             observer.observe(fallElement);
         });
+
+        const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeMobileNav = document.getElementById('closeMobileNav');
+
+    hamburger.addEventListener('click', function () {
+      mobileNav.classList.toggle('active');
+    });
+
+    closeMobileNav.addEventListener('click', function () {
+      mobileNav.classList.remove('active');
+    });
+
+    // Hide navbar on scroll down, show on scroll up
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-60px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
   </script>
 </body>
 
