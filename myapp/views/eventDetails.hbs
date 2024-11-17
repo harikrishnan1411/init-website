@@ -78,8 +78,9 @@
         }
 
         #mobileNav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+            color: rgba(37, 180, 49, 0.9);
+            /* Change color on hover */
+    }
 
         #mobileNav.active {
             transform: translateX(0);
@@ -330,7 +331,7 @@
                     <a href="{{event.formLink}}" class="btn mt-8">Join</a>
                     {{/unless}}
                     {{#if event.completed}}
-                    <p class="text-red-500 mt-8">Event has ended</p>
+                    <p class="text-red-500 mt-8 text-2xl mb-20">Event has ended!</p>
                     {{/if}}
                 </div>
             </div>
